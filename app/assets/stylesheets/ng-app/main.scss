@@ -2,3 +2,65 @@
 // @import "bootstrap/bootstrap";
 // @import "globals";
 // @import "dashboard";
+
+body {
+  background-color:#222;
+
+  .xcontainer {
+    max-width:960px;
+    margin:0 auto;
+
+    .word-panel {
+      margin-bottom:1em;
+      width:100%;
+      background-color:#000;
+      padding-bottom:2px;
+
+      .audio-field {
+        padding:.5em;
+        float:left;
+        background-color:#000;
+
+        audio {
+          width:2.9em;
+        }
+      }
+
+      input {
+        width:87%;
+        border:none;
+        font-size:2.4em;
+        margin-top:2px;
+        padding-left:3px;
+      }
+
+      i {
+        color:#fff;
+        padding-left:.3em;
+        margin-top:-5px;
+      }
+    }
+  }
+}
+
+@media only screen
+    and (min-device-width : 414px)
+    and (max-device-width : 736px)
+    and (device-width : 414px)
+    and (device-height : 736px)
+    and (orientation : portrait)
+    and (-webkit-min-device-pixel-ratio : 3)
+    and (-webkit-device-pixel-ratio : 3) {
+
+  body {
+    background-color:#222;
+
+    .xcontainer {
+      .word-panel {
+        input {
+          width:70%;
+        }
+      }
+    }
+  }
+}

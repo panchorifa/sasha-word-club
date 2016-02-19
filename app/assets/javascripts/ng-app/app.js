@@ -42,13 +42,7 @@ angular.module('bee', [
     $scope.checks = [];
 
     $scope.checkWord = function(text, value, idx) {
-      console.log(text);
-      console.log(value);
-      console.log(idx);
       $scope.checks[idx] = text === value? 1 : 0;
-      console.log($scope.checks[idx]);
-      console.log($scope.checks[idx+1]);
-      return text === value;
     };
   }
 ]);
