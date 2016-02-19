@@ -1,0 +1,16 @@
+<div class="xcontainer">
+  <div ng-repeat="word in words" class="word-panel">
+    <div class="audio-field" style="background-color:#000;">
+      <audio id="audio-player{{$index}}" controls style="width:2.9em;display:none;">
+        <source src="{{word.audio}}" type="audio/mpeg">
+      </audio>
+      <a ng-click="play($index)"><i class="fa fa-play fa-2x" style="padding:8px .1em 0 .25em;color:#fff"></i></a>
+    </div>
+    <input ng-model="spelling" autocomplete="off" autocorrect="off" autocapitalize="off" lowered></input>
+    <a ng-click="checkWord(word.text, spelling, $index)">
+      <i ng-show="checks[$index] == undefined" class="fa fa-circle fa-2x" ng-cloak></i>
+      <i ng-show="checks[$index]" class="fa fa-check fa-2x" ng-cloak></i>
+      <i ng-show="checks[$index] == false" class="fa fa-times fa-2x" ng-cloak></i>
+    </a>
+  </div>
+</div>
