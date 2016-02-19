@@ -7,8 +7,13 @@ angular.module('bee', [
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
   function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
-    .state('words', {
+    .state('app', {
         url: '/',
+        templateUrl: 'app.html',
+        controller: 'AppCtrl'
+    })
+    .state('words', {
+        url: '/words',
         templateUrl: 'words.html',
         controller: 'WordsCtrl'
     });
@@ -18,6 +23,10 @@ angular.module('bee', [
     requireBase: false
   });
 }])
+.controller('AppCtrl', ['$scope',
+  function ($scope) {
+  }
+])
 .controller('WordsCtrl', ['$scope', '$sce',
   function ($scope, $sce) {
     var AUDIO_URL = 'http://static.sfdict.com/staticrep/dictaudio/';

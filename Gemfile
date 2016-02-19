@@ -24,3 +24,10 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
+
+group :production, :staging do
+  gem 'passenger'
+  gem 'rails_12factor'
+  gem 'rollbar'
+  gem 'newrelic_rpm'
+end

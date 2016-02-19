@@ -2,10 +2,21 @@
 // @import "bootstrap/bootstrap";
 // @import "globals";
 // @import "dashboard";
+@import "home";
 
 body {
   background-color:#222;
-
+  .btn {
+    background-color:white;
+    text-decoration: none;
+    padding:.5em 1em;
+    font-size:2em;
+    width:90%;
+    border-radius:3px;
+    color:#222;
+    font-family: Arial;
+    text-transform: uppercase;
+  }
   .xcontainer {
     max-width:960px;
     margin:0 auto;
