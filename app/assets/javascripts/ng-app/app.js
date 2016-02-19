@@ -54,4 +54,22 @@ angular.module('bee', [
       $scope.checks[idx] = text === value? 1 : 0;
     };
   }
-]);
+])
+.directive('lowered', function() {
+   return {
+     require: 'ngModel',
+     link: function(scope, element, attrs, modelCtrl) {
+        var lower = function(inputValue) {
+           if(inputValue == undefined) inputValue = '';
+           var xlowered = inputValue.toLowerCase();
+           if(xlowered !== inputValue) {
+              modelCtrl.$setViewValue(xlowered);
+              modelCtrl.$render();
+            }
+            return xlowered;
+         }
+         modelCtrl.$parsers.push(lower);
+         lower(scope[attrs.ngModel]);
+     }
+   };
+});
