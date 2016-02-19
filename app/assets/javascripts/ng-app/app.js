@@ -53,6 +53,10 @@ angular.module('bee', [
     $scope.checkWord = function(text, value, idx) {
       $scope.checks[idx] = text === value? 1 : 0;
     };
+
+    $scope.play = function(idx) {
+      angular.element(document.getElementById('audio-player'+idx).play());
+    }
   }
 ])
 .directive('lowered', function() {
