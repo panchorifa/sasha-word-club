@@ -1,17 +1,1 @@
-<div style="max-width:960px;margin:0 auto;background-color:#444;">
-<% @words.each do |word| %>
-<div style="margin-bottom:1em;width:100%;background-color:#000;padding-bottom:2px;">
-  <div style="padding:.5em;float:left;background-color:#000;">
-    <audio controls style="width:3em;">
-      <source src=<%= word[:audio] %> type="audio/mpeg">
-      </audio>
-  </div>
-  <input type="text" style="width:87%;border:none;font-size:2.4em;margin-top:2px;padding-left:3px;"></input>
-  <!-- <div style="border:1px solid red;text-align:right;height:2em;">
-    <i class="fa fa-circle"></i>
-  </div> -->
-  <!-- <div class="btn" style="float:right;border:1px solid #000;height:2.9em;width:3.6em;">x</div> -->
-  <a><i class="fa fa-circle fa-2x" style="color:#fff;padding-left:.3em;margin-top:-2px;"></i></a>
-</div>
-<% end %>
-</div>
+<div class="main-view-container" ui-view></div>
