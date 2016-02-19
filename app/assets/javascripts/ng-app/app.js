@@ -20,12 +20,13 @@ angular.module('bee', [
 }])
 .controller('WordsCtrl', ['$scope', '$sce',
   function ($scope, $sce) {
+    var AUDIO_URL = 'http://static.sfdict.com/staticrep/dictaudio/';
     var wordAudio = function(word, audio) {
       return {
-        text: word, audio: $sce.trustAsResourceUrl('http://static.sfdict.com/staticrep/dictaudio/'+audio)
-      }
+        text: word,
+        audio: $sce.trustAsResourceUrl(AUDIO_URL+audio)
+      };
     };
-
     $scope.words = [
       wordAudio('mineral', 'M04/M0453800.mp3'),
       wordAudio('aloha',   'A03/A0344200.mp3'),
@@ -40,7 +41,9 @@ angular.module('bee', [
     ];
 
     $scope.checkWord = function(text, value) {
+      console.log(text);
+      console.log(value);
       return text === value;
-    }
+    };
   }
 ]);

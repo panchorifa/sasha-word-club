@@ -1,2 +1,5 @@
 asset 'angular'
+asset 'angular-sanitize'
+asset 'angular-ui-router'
+asset 'angular-animate'
 asset 'bootstrap-sass-official'
