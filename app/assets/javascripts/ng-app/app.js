@@ -39,10 +39,15 @@ angular.module('bee', [
       wordAudio('random',  'R00/R0056000.mp3'),
       wordAudio('summary', 'S11/S1106500.mp3')
     ];
+    $scope.checks = [];
 
-    $scope.checkWord = function(text, value) {
+    $scope.checkWord = function(text, value, idx) {
       console.log(text);
       console.log(value);
+      console.log(idx);
+      $scope.checks[idx] = text === value? 1 : 0;
+      console.log($scope.checks[idx]);
+      console.log($scope.checks[idx+1]);
       return text === value;
     };
   }
