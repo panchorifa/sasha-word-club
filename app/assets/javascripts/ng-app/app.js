@@ -225,7 +225,7 @@ angular.module('bee', [
       wordAudio('rattler', 'R00/R0078600.mp3', 'noun', "a rattlesnake."),
       wordAudio('medley', 'M02/M0260600.mp3', 'noun', "a mixture, especially of heterogeneous elements; hodgepodge; jumble."),
       wordAudio('difficult', 'D02/D0295400.mp3', 'adjective', "not easily or readily done; requiring much labor, skill, or planning to be performed successfully; hard: a difficult job."),
-      wordAudio('fringe', 'F03/F0379100.mp3', 'noun', "a decorative border of thread, cord, or the like, usually hanging loosely from a raveled edge or separate strip."),      
+      wordAudio('fringe', 'F03/F0379100.mp3', 'noun', "a decorative border of thread, cord, or the like, usually hanging loosely from a raveled edge or separate strip."),
     ];
 
     $scope.bee = {
@@ -239,6 +239,10 @@ angular.module('bee', [
     $scope.words = $scope.bee.rounds[0];
     $scope.checks = new Array($scope.words.length);
     $scope.congrats = new Array($scope.bee.rounds.length);
+
+    $scope.xcongrats = function() {
+      return $scope.congrats[$scope.bee.round]===true;
+    };
 
     $scope.checkWord = function(text, value, idx) {
       var x = text === value? 1 : 0;
