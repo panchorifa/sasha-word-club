@@ -41,6 +41,7 @@ i {
       color:#fff;
       padding:.5em;
       width:2em;
+      margin:.15em;
       &.active {
         background-color: #fdaf17;
       }
@@ -119,3 +120,29 @@ i {
 //     }
 //   }
 // }
+
+.level-info {
+  text-align:center;
+  padding-top:1em;
+}
+.level-action {
+  text-align:center;
+  padding:.4em 0 .5em 0;
+}
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (-webkit-min-device-pixel-ratio: 1)  {
+  .rounds {
+    ul {
+      li {
+        width:3.5em;
+        margin:.5em;
+      }
+    }
+  }
+  .level-info, .level-action {
+    font-size:2em;
+  }
+}
