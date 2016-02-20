@@ -1,81 +1,94 @@
 
-// @import "bootstrap/bootstrap";
-// @import "globals";
-// @import "dashboard";
+//
+// // @import "bootstrap/bootstrap";
+// // @import "globals";
+// // @import "dashboard";
 @import "home";
 
-body {
-  background-color:#222;
-  .btn {
-    background-color:white;
-    text-decoration: none;
-    padding:.5em 1em;
-    font-size:2em;
-    width:90%;
-    border-radius:3px;
-    color:#222;
-    font-family: Arial;
-    text-transform: uppercase;
+
+i {
+  color: #fff;//fdaf17;
+}
+
+.word-panel {
+  // border:1px solid #fdaf17;
+  background-color:#fdaf17;
+  padding:1em;
+  margin:0 1em;
+  border-radius:3px;
+  &.wrong {
+    background-color:red;
   }
-  .xcontainer {
-    max-width:960px;
-    margin:0 auto;
-
-    .word-panel {
-      margin-bottom:1em;
-      width:100%;
-      background-color:#000;
-      padding-bottom:2px;
-
-      .audio-field {
-        padding:.5em;
-        float:left;
-        background-color:#000;
-
-        audio {
-          width:2.9em;
-        }
-
-        #audio-player {
-          width:2.9em;
-        }
-      }
-
-      input {
-        width:87%;
-        border:none;
-        font-size:2.4em;
-        margin-top:2px;
-        padding-left:3px;
-      }
-
-      i {
-        color:#fff;
-        padding-left:.3em;
-        margin-top:-5px;
-      }
-    }
+  &.right {
+   background-color:green;
   }
 }
 
-@media only screen
-and (min-device-width : 414px)
-and (max-device-width : 736px) {
-  body {
-    background-color:#222;
-
-    .xcontainer {
-      .word-panel {
-        input {
-          width:70%;
-        }
-      }
-    }
-  }
-
-  #home {
-    h1 {
-      color:#000;
-    }
-  }
-}
+//
+// body {
+//   background-color:#222;
+//   .btn {
+//     background-color:white;
+//     text-decoration: none;
+//     padding:.5em 1em;
+//     font-size:2em;
+//     width:90%;
+//     border-radius:3px;
+//     color:#222;
+//     font-family: Arial;
+//     text-transform: uppercase;
+//   }
+//   .xcontainer {
+//     max-width:960px;
+//     margin:0 auto;
+//
+//     .word-panel {
+//       margin-bottom:1em;
+//       width:100%;
+//       background-color:#000;
+//       padding-bottom:2px;
+//
+//       .audio-field {
+//         padding:.5em;
+//         float:left;
+//         background-color:#000;
+//       }
+//
+//       input {
+//         width:87%;
+//         border:none;
+//         font-size:2.4em;
+//         margin-top:2px;
+//         padding-left:3px;
+//       }
+//
+//       i {
+//         color:#fff;
+//         padding-left:.3em;
+//         margin-top:-5px;
+//       }
+//     }
+//   }
+// }
+//
+// @media only screen
+// and (min-device-width : 414px)
+// and (max-device-width : 736px) {
+//   body {
+//     background-color:#222;
+//
+//     .xcontainer {
+//       .word-panel {
+//         input {
+//           width:70%;
+//         }
+//       }
+//     }
+//   }
+//
+//   #home {
+//     h1 {
+//       color:#000;
+//     }
+//   }
+// }
