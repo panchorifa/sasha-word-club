@@ -17,10 +17,13 @@ i {
   margin:0 1em;
   border-radius:3px;
   &.wrong {
-    background-color:red;
+    background-color:#df2602;// #fd3c17;
   }
   &.right {
-   background-color:green;
+   background-color:#10b12a;
+  }
+  &.study {
+    background-color: #222;
   }
 }
 

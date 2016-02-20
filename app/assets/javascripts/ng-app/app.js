@@ -36,6 +36,16 @@ angular.module('bee', [
         audio: $sce.trustAsResourceUrl(AUDIO_URL+audio)
       };
     };
+    $scope.mode = 'test';
+    $scope.simon = function(x) {
+      $scope.mode = x;
+    }
+
+    $scope.effects = {
+      ding: 'http://newt.phys.unsw.edu.au/music/bellplates/sounds/bellplate-corner4.mp3',
+      buzzer: 'http://www.sounds.beachware.com/2illionzayp3may/zwvyaz/BUZZER.mp3'
+    };
+
     $scope.words = [
       wordAudio('mineral', 'M04/M0453800.mp3'),
       wordAudio('aloha',   'A03/A0344200.mp3'),
@@ -51,7 +61,14 @@ angular.module('bee', [
     $scope.checks = [];
 
     $scope.checkWord = function(text, value, idx) {
-      $scope.checks[idx] = text === value? 1 : 0;
+      // value = angular.element(document.getElementById("spelling"+idx).text);
+      var x = text === value? 1 : 0;
+      $scope.checks[idx] = x;
+      if(x === 1) {
+        angular.element(document.getElementById('ding').play());
+      } else {
+        angular.element(document.getElementById('buzzer').play());
+      }
     };
 
     $scope.play = function(idx) {
