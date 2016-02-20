@@ -4,30 +4,35 @@
 <audio id="buzzer" controls style="display:none;">
   <source src="http://www.sounds.beachware.com/2illionzayp3may/zwvyaz/BUZZER.mp3" type="audio/mpeg">
 </audio>
-<div xclass="xcontainer" style="width:100%;" ng-init="mode='study';round=1;">
+<audio id="diana" controls style="display:none;">
+  <source src="http://www.sounds.beachware.com/2illionzayp3may/zwvyaz/BUZZER.mp3" type="audio/mpeg">
+</audio>
+<div xclass="xcontainer" style="width:100%;">
   <div style="background-color:#222;">
     <h2 style="font-weight:bold;text-align:center;padding:.25em 0;color:#fff;">SASHA <span style="color:#fdaf17">BEE</span> GAME</h2>
   </div>
   <div class="rounds">
     <ul>
-      <li ng-click="clear();round=1;mode='study';words=round1" ng-class="{active: round===1}">A</li>
-      <li ng-click="clear();round=2;mode='study';words=round2" ng-class="{active: round===2}">B</li>
-      <li ng-click="clear();round=3;mode='study';words=round3" ng-class="{active: round===3}">C</li>
-      <li ng-click="clear();round=4;mode='study';words=round4" ng-class="{active: round===4}">D</li>
-      <li ng-click="clear();round=5;mode='study';words=round5" ng-class="{active: round===5}">E</li>
-      <li ng-click="clear();round=6;mode='study';words=round6" ng-class="{active: round===6}">F</li>
-      <li ng-click="clear();round=7;mode='study';words=round7" ng-class="{active: round===7}">G</li>
-      <li ng-click="clear();round=8;mode='study';words=round8" ng-class="{active: round===8}">H</li>
-      <li ng-click="clear();round=9;mode='study';words=round9" ng-class="{active: round===9}">I</li>
-      <li ng-click="clear();round=10;mode='study';words=round10" ng-class="{active: round===10}">J</li>
+      <li style="margin:.15em;" ng-repeat="l in bee.roundLabels" ng-click="loadLevel($index);" ng-class="{active: bee.round===$index, success: congrats[$index]===true}">{{l}}</li>
     </ul>
   </div>
-  <div style="text-align:center;padding:1.4em 0 .5em 0;">
-    <a ng-if="mode==='test'" ng-click="simon('study');mode=study" style="text-decoration:underline;">Study Guide</a>
-    <a ng-if="mode==='study'" ng-click="simon('test');mode='test'" style="text-decoration:underline;">Take Test</a>
+  <div ng-if="congrats[bee.round]===true" class="word-panel right" style="color:#fff;margin:1.2em 1.5em;">
+    <div><b>Congratulations!</b></div>
+    <div style="padding:.75em 0;">You have mastered all {{words.length}} words in level <b>{{bee.level}}</b> :</div>
+    <div>{{allwords}}</div>
+  </div>
+  <div ng-if="congrats[bee.round]!==true">
+    <div style="text-align:center;padding-top:1em;">
+      <div>Level: <b>{{bee.level}}</b></div>
+      <div>Words: <b>{{words.length}}</b></div>
+    </div>
+
+  <div style="text-align:center;padding:.4em 0 .5em 0;">
+    <a ng-if="bee.mode==='test'" ng-click="simon('study')" style="text-decoration:underline;">Study Guide</a>
+    <a ng-if="bee.mode==='study'" ng-click="simon('test')" style="text-decoration:underline;">Take Test</a>
   </div>
   <div ng-repeat="word in words" style="width:100%;padding:1em;">
-    <div ng-if="mode==='test'" class="row word-panel" ng-class="{wrong:checks[$index]==false, right:checks[$index]}" style="height:4em;">
+    <div ng-if="bee.mode==='test'" class="row word-panel" ng-class="{wrong:checks[$index]==false, right:checks[$index]}" style="height:4em;">
       <div class="col-xs-2" style="xborder:1px solid red;text-align:right;">
         <audio id="audio-player{{$index}}" controls style="display:none;">
           <source src="{{word.audio}}" type="audio/mpeg">
@@ -47,7 +52,7 @@
         </a>
       </div>
     </div>
-    <div ng-if="mode==='study'" class="word-panel study">
+    <div ng-if="bee.mode==='study'" class="word-panel study">
       <div class="row">
         <div class="col-xs-2" style="xborder:1px solid red;text-align:right;">
           <audio id="audio-player{{$index}}" controls style="display:none;">
@@ -65,5 +70,6 @@
         <div style="padding:1em 0;">{{word.pg}}</div>
         <div>{{word.definition}}</div>
       </div>
+  </div>
   </div>
 </div>

@@ -14,7 +14,7 @@ i {
   // border:1px solid #fdaf17;
   background-color:#fdaf17;
   padding:1em;
-  margin:0 .6em;
+  margin:0 .5em;
   border-radius:3px;
   &.wrong {
     background-color:#df2602;// #fd3c17;
@@ -43,6 +43,9 @@ i {
       width:2em;
       &.active {
         background-color: #fdaf17;
+      }
+      &.success {
+        background-color: #10b12a;
       }
     }
   }

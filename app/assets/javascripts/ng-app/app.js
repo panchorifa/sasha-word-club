@@ -38,22 +38,19 @@ angular.module('bee', [
         definition: definition
       };
     };
-    $scope.mode = 'test';
+
     $scope.simon = function(x) {
-      $scope.mode = x;
+      $scope.bee.mode = x;
     }
 
-    $scope.effects = {
-      ding: 'http://newt.phys.unsw.edu.au/music/bellplates/sounds/bellplate-corner4.mp3',
-      buzzer: 'http://www.sounds.beachware.com/2illionzayp3may/zwvyaz/BUZZER.mp3'
-    };
-
-    $scope.round1 = [
+    var round1 = [
       wordAudio('mineral', 'M04/M0453800.mp3', 'noun', "any of a class of substances occurring in nature, usually comprising inorganic substances, as quartz or feldspar, of definite chemical composition and usually of definite crystal structure, but sometimes also including rocks formed by these substances as well as certain natural products of organic origin, as asphalt or coal."),
       wordAudio('aloha', 'A03/A0344200.mp3', 'noun, interjection', "hello; greetings."),
       wordAudio('coffee', 'C06/C0620300.mp3', 'noun', "a beverage consisting of a decoction or infusion of the roasted ground or crushed seeds (coffee beans) of the two-seeded fruit (coffee berry) of certain coffee trees."),
       wordAudio('mustang', 'M07/M0708700.mp3', 'noun', "a small, hardy horse of the American plains, descended from Spanish stock."),
-      wordAudio('parade', 'P00/P0089700.mp3', 'noun', "a large public procession, usually including a marching band and often of a festive nature, held in honor of an anniversary, person, event, etc."),
+      wordAudio('parade', 'P00/P0089700.mp3', 'noun', "a large public procession, usually including a marching band and often of a festive nature, held in honor of an anniversary, person, event, etc.")
+    ];
+    var round2 = [
       wordAudio('kiwi', 'K01/K0134100.mp3', 'noun', "any of several flightless, ratite birds of the genus Apteryx, of New Zealand, allied to the extinct moas."),
       wordAudio('eyebrow', 'E04/E0443100.mp3', 'noun', "the arch or ridge forming the upper part of the orbit of the eye."),
       wordAudio('velcro', 'V00/V0061100.mp3', 'noun', "a brand of fastening tape consisting of opposing pieces of fabric, one with a dense arrangement of tiny nylon hooks and the other with a dense nylon pile, that interlock when pressed together, used as a closure on garments, luggage, etc., in place of buttons, zippers, and the like."),
@@ -63,7 +60,9 @@ angular.module('bee', [
       wordAudio('variety', 'V00/V0038500.mp3', 'noun', "the state of being varied or diversified: to give variety to a diet."),
       wordAudio('moxie', 'M06/M0650800.mp3', 'noun', "force of character, determination, or nerve: when you've got moxie, you need the clothes to match"),
       wordAudio('jersey', 'J00/J0051000.mp3', 'noun', 'a close-fitting, knitted sweater or shirt.'),
-      wordAudio('people', 'P02/P0250900.mp3', 'noun', 'persons indefinitely or collectively'),
+      wordAudio('people', 'P02/P0250900.mp3', 'noun', 'persons indefinitely or collectively')
+    ];
+    var round3 = [
       wordAudio('cough', 'C08/C0898800.mp3', 'verb (used without object)', 'to expel air from the lungs suddenly with a harsh noise, often involuntarily.'),
       wordAudio('marlin', 'M01/M0163500.mp3', 'noun', 'any large, saltwater game fish of the genera Makaira and Tetrapterus, having the upper jaw elongated into a spearlike structure.'),
       wordAudio('warning', 'W00/W0041700.mp3', 'noun', 'the act or utterance of one who warns or the existence, appearance, sound, etc., of a thing that warns.'),
@@ -73,14 +72,14 @@ angular.module('bee', [
       wordAudio('domino', 'D04/D0453100.mp3', 'noun', 'a flat, thumbsized, rectangular block, the face of which is divided into two parts, each either blank or bearing from one to six pips or dots: 28 such pieces form a complete set.'),
       wordAudio('glance', 'G01/G0177500.mp3', 'verb (used without object)', 'to look quickly or briefly.'),
       wordAudio('atomic', 'A07/A0785700.mp3', 'adjective', 'of, pertaining to, resulting from, or using atoms, atomic energy, or atomic bombs: an atomic explosion.'),
-      wordAudio('native', 'N00/N0038500.mp3', 'adjective', "being the place or environment in which a person was born or a thing came into being: one's native land.")
-    ];
-    $scope.round2 = [
+      wordAudio('native', 'N00/N0038500.mp3', 'adjective', "being the place or environment in which a person was born or a thing came into being: one's native land."),
       wordAudio('clutch', 'C05/C0582400.mp3', 'verb (used with object)', 'to seize with or as with the hands or claws; snatch: The bird swooped down and clutched its prey with its claws.'),
       wordAudio('polar', 'P05/P0586100.mp3', 'adjective', 'of or relating to the North or South Pole.'),
       wordAudio('field', 'F01/F0126400.mp3', 'noun', 'an expanse of open or cleared ground, especially a piece of land suitable or used for pasture or tillage.'),
       wordAudio('ocean', 'O00/O0026100.mp3', 'noun', "the vast body of salt water that covers almost three fourths of the earth's surface."),
-      wordAudio('acre', 'A00/A0095400.mp3', 'noun', 'a common measure of area: in the U.S. and U.K., 1 acre equals 4,840 square yards (4,047 square meters) or 0.405 hectare; 640 acres equals one square mile.'),
+      wordAudio('acre', 'A00/A0095400.mp3', 'noun', 'a common measure of area: in the U.S. and U.K., 1 acre equals 4,840 square yards (4,047 square meters) or 0.405 hectare; 640 acres equals one square mile.')
+    ];
+    var round4 = [
       wordAudio('euro', 'E03/E0348100.mp3', 'noun', "the single European currency, which replaced the national currencies of France, Germany, Spain, Italy, Greece, Portugal, Luxembourg, Austria, Finland, the Republic of Ireland, Belgium, and the Netherlands in 2002. Seventeen member states of the European Union now use the euro."),
       wordAudio('wrinkle', 'W02/W0253100.mp3', 'noun', 'a small furrow or crease in the skin, especially of the face, as from aging or frowning.'),
       wordAudio('flattery', 'F02/F0201400.mp3', 'noun', "excessive and insincere praise, especially that given to further one's own interests. his healthy distrust of courtiers' flattery. synonyms:	praise, adulation, compliments, blandishments, honeyed words."),
@@ -90,24 +89,24 @@ angular.module('bee', [
       wordAudio('catalog', 'C02/C0205000.mp3', 'noun', 'a list or record, as of items for sale or courses at a university, systematically arranged and often including descriptive material: a stamp catalog.'),
       wordAudio('lactose', 'L00/L0019100.mp3', 'noun', 'Biochemistry. a disaccharide, C <sub>12</sub> H <sub>22</sub> O <sub>11</sub> , present in milk, that upon hydrolysis yields glucose and galactose.'),
       wordAudio('diploma', 'D03/D0330100.mp3', 'noun', 'a document given by an educational institution conferring a degree on a person or certifying that the person has satisfactorily completed a course of study.'),
-      wordAudio('everglades', 'E03/E0364100.mp3', 'noun', 'a swampy and partly forested region in S Florida, mostly S of Lake Okeechobee. Over 5000 sq. mi. (12,950 sq. km).'),
       wordAudio('emerald', 'E01/E0137800.mp3', 'noun', 'a rare variety of beryl that is colored green by chromium and valued as a gem.'),
       wordAudio('atrium', 'A07/A0789400.mp3', 'noun', "Architecture. Also called cavaedium. the main or central room of an ancient Roman house, open to the sky at the center and usually having a pool for the collection of rain water."),
+      wordAudio('whiff', 'NEW/NEW16095.mp3', 'noun', 'a slight gust or puff of wind, air, vapor, smoke, or the like: a whiff of fresh air.'),
       wordAudio('phrasing', 'P04/P0402500.mp3', 'noun', 'the act of forming phrases.'),
       wordAudio('cyberspace', 'C10/C1082700.mp3', 'noun', 'the realm of electronic communication.'),
+      wordAudio('mutiny', 'M07/M0712800.mp3', 'noun', 'revolt or rebellion against constituted authority, especially by sailors against their officers.'),
       wordAudio('origin', 'O01/O0158700.mp3', 'noun', 'something from which anything arises or is derived; source; fountainhead: to follow a stream to its origin.'),
       wordAudio('parable', 'P00/P0087100.mp3', 'noun', 'a short allegorical story designed to illustrate or teach some truth, religious principle, or moral lesson.'),
       wordAudio('chemistry', 'C03/C0366800.mp3', 'noun', 'the science that deals with the composition and properties of substances and various elementary forms of matter.'),
       wordAudio('swollen', 'S11/S1195200.mp3', 'verb', 'a past participle of swell. (especially of a part of the body) become larger or rounder in size, typically as a result of an accumulation of fluid.'),
-      wordAudio('diagonal', 'D02/D0258400.mp3', 'adjective', 'Mathematics. connecting two nonadjacent angles or vertices of a polygon or polyhedron, as a straight line.'),
-      wordAudio('fulfilling', 'F04/F0407400.mp3', 'verb (used with object)', "making someone satisfied or happy because of fully developing their character or abilities: a fulfilling and rewarding career")
+      wordAudio('diagonal', 'D02/D0258400.mp3', 'adjective', 'Mathematics. connecting two nonadjacent angles or vertices of a polygon or polyhedron, as a straight line.')
     ];
-    $scope.round3 = [
+    var round5 = [
+      wordAudio('fulfill', 'F04/F0407400.mp3', 'verb (used with object)', "making someone satisfied or happy because of fully developing their character or abilities: a fulfilling and rewarding career"),
       wordAudio('hammock', 'H00/H0054400.mp3', 'noun', 'a hanging bed or couch made of canvas, netted cord, or the like, with cords attached to supports at each end.'),
-      wordAudio('whiff', 'NEW/NEW16095.mp3', 'noun', 'a slight gust or puff of wind, air, vapor, smoke, or the like: a whiff of fresh air.'),
-      wordAudio('mutiny', 'M07/M0712800.mp3', 'noun', 'revolt or rebellion against constituted authority, especially by sailors against their officers.'),
       wordAudio('blossom', 'B04/B0426500.mp3', 'noun', 'the flower of a plant, especially of one producing an edible fruit.'),
       wordAudio('magma', 'M00/M0040300.mp3', 'noun', "Geology. molten material beneath or within the earth's crust, from which igneous rock is formed."),
+      wordAudio('everglades', 'E03/E0364100.mp3', 'noun', 'a swampy and partly forested region in S Florida, mostly S of Lake Okeechobee. Over 5000 sq. mi. (12,950 sq. km).'),
       wordAudio('snippet', 'S06/S0663800.mp3', 'noun', 'a small piece snipped off; a small bit, scrap, or fragment: an anthology of snippets.'),
       wordAudio('grumbling', 'G03/G0372300.mp3', 'verb (used without object)', 'to murmur or mutter in discontent; complain sullenly.'),
       wordAudio('granola', 'G03/G0303400.mp3', 'noun', 'a breakfast food consisting of rolled oats, brown sugar, nuts, dried fruit, etc., usually served with milk.'),
@@ -129,7 +128,7 @@ angular.module('bee', [
       wordAudio('nonfiction', 'N01/N0194800.mp3', 'noun', 'the branch of literature comprising works of narrative prose dealing with or offering opinions or conjectures upon facts and reality, including biography, history, and the essay (opposed to fiction and distinguished from poetry and drama).'),
       wordAudio('platoon', 'P05/P0530100.mp3', 'noun', 'a military unit consisting of two or more squads or sections and a headquarters.')
     ];
-    $scope.round4 = [
+    var round6 = [
       wordAudio('junior', 'J01/J0114600.mp3', 'adjective', 'younger (designating the younger of two men bearing the same full name, as a son named after his father; often written as Jr. or jr. following the name): May I speak with the junior Mr. Hansen?'),
       wordAudio('kangaroo', 'K00/K0020600.mp3', 'noun', 'any herbivorous marsupial of the family Macropodidae, of Australia and adjacent islands, having a small head, short forelimbs, powerful hind legs used for leaping, and a long, thick tail: several species are threatened or endangered.'),
       wordAudio('excuse', 'E03/E0387400.mp3', 'verb (used with object)', 'to regard or judge with forgiveness or indulgence; pardon or forgive; overlook (a fault, error, etc.): Excuse his bad manners.'),
@@ -154,9 +153,9 @@ angular.module('bee', [
       wordAudio('parable', 'P00/P0087100.mp3', 'noun', "a short allegorical story designed to illustrate or teach some truth, religious principle, or moral lesson."),
       wordAudio('splurge', 'S08/S0827500.mp3', 'verb (used without object)', "to indulge oneself in some luxury or pleasure, especially a costly one: They splurged on a trip to Europe."),
       wordAudio('balderdash', 'B00/B0051600.mp3', 'noun', "senseless, stupid, or exaggerated talk or writing; nonsense."),
-      wordAudio('hodgepodge', 'H03/H0317000.mp3', 'noun', "a heterogeneous mixture; jumble.")
+      wordAudio('hodgepodge', 'H03/H0317000.mp3', 'noun', "a heterogeneous mixture; jumble."),
     ];
-    $scope.round5 = [
+    var round7 = [
       wordAudio('superlative', 'S11/S1132500.mp3', 'adjective', "of the highest kind, quality, or order; surpassing all else or others; supreme; extreme: superlative wisdom."),
       wordAudio('victorian', 'V01/V0116300.mp3', 'adjective', "of or relating to Queen Victoria or the period of her reign: Victorian poets."),
       wordAudio('columnist', 'C06/C0667200.mp3', 'noun', "the writer or editor of a newspaper or magazine column."),
@@ -181,9 +180,10 @@ angular.module('bee', [
       wordAudio('eleemosynary', 'E01/E0100500.mp3', 'adjective', "of or relating to alms, charity, or charitable donations; charitable."),
       wordAudio('Iroquois', 'I03/I0305400.mp3', 'noun', "a member of a North American Indian confederacy, the Five Nations, comprising the Mohawks, Oneidas, Onondagas, Cayugas, and Senecas, and later the Tuscaroras."),
       wordAudio('tractor', 'T04/T0420800.mp3', 'noun', "a powerful motor-driven vehicle with large, heavy treads, used for pulling farm machinery, other vehicles, etc."),
-      wordAudio('likable', 'L02/L0252200.mp3', 'adjective', "readily or easily liked; pleasing: a likable young man.")
+      wordAudio('garlic', 'G00/G0054400.mp3', 'noun', "a hardy plant, Allium sativum, of the amaryllis family whose strongly, pungent bulb is used in cookery and medicine."),
     ];
-    $scope.round6 = [
+    var round8 = [
+      wordAudio('likable', 'L02/L0252200.mp3', 'adjective', "readily or easily liked; pleasing: a likable young man."),
       wordAudio('hinge', 'H02/H0291800.mp3', 'noun', "a jointed device or flexible piece on which a door, gate, shutter, lid, or other attached part turns, swings, or moves."),
       wordAudio('future', 'F04/F0434600.mp3', 'noun', "time that is to be or come hereafter."),
       wordAudio('gusto', 'G04/G0411200.mp3', 'noun', "hearty or keen enjoyment, as in eating or drinking, or in action or speech in general: to dance with gusto."),
@@ -193,56 +193,77 @@ angular.module('bee', [
       wordAudio('hefty', 'H01/H0159800.mp3', 'adjective', "heavy; weighty: a hefty book."),
       wordAudio('glimmer', 'G01/G0189300.mp3', 'noun', "a faint or unsteady light; gleam."),
       wordAudio('jackpot', 'J00/J0005900.mp3', 'noun', "the chief prize or the cumulative stakes in a game or contest, as in bingo, a quiz contest, or a slot machine."),
-      wordAudio('garlic', 'G00/G0054400.mp3', 'noun', "a hardy plant, Allium sativum, of the amaryllis family whose strongly, pungent bulb is used in cookery and medicine."),
       wordAudio('plaza', 'P05/P0537300.mp3', 'noun', "a public square or open space in a city or town."),
       wordAudio('naysayer', 'N00/N0046900.mp3', 'noun', "a person who habitually expresses negative or pessimistic views: Despite a general feeling that things were going well, a few naysayers tried to cast gloom."),
       wordAudio('around', 'A06/A0693200.mp3', 'adverb', "in a circle, ring, or the like; so as to surround a person, group, thing, etc.: The crowd gathered around."),
       wordAudio('splendid', 'S08/S0823800.mp3', 'adjective', "gorgeous; magnificent; sumptuous. Synonyms: luxurious, dazzling, imposing."),
       wordAudio('zinger', 'Z00/Z0028900.mp3', 'noun', "a quick, witty, or pointed remark or retort: During the debate she made a couple of zingers that deflated the opposition."),
-      wordAudio('band-Aid', 'B00/B0072100.mp3', 'noun', "a brand of adhesive bandage with a gauze pad in the center, used to cover minor abrasions and cuts."),
+      wordAudio('band-aid', 'B00/B0072100.mp3', 'noun', "a brand of adhesive bandage with a gauze pad in the center, used to cover minor abrasions and cuts."),
       wordAudio('watchdog', 'W00/W0052400.mp3', 'noun', "a dog kept to guard property."),
       wordAudio('dearly', 'D00/D0069700.mp3', 'adjective', "beloved or loved: a dear friend."),
       wordAudio('impostor', 'I00/I0082500.mp3', 'noun', "a person who practices deception under an assumed character, identity, or name."),
       wordAudio('tirade', 'T03/T0320100.mp3', 'noun', "a prolonged outburst of bitter, outspoken denunciation: a tirade against smoking."),
+      wordAudio('drench', 'D05/D0526600.mp3', 'verb (used with object)', "to wet thoroughly; soak."),
+      wordAudio('buoyancy', 'B07/B0703700.mp3', 'noun', "the power to float or rise in a fluid; relative lightness."),
+      wordAudio('bonkers', 'B04/B0488000.mp3', 'adjective', "mentally unbalanced; mad; crazy."),
+      wordAudio('seldom', 'S02/S0280100.mp3', 'adverb', "on only a few occasions; rarely; infrequently; not often: We seldom see our old neighbors anymore."),
+      wordAudio('calico', 'C00/C0046600.mp3', 'noun', "a plain-woven cotton cloth printed with a figured pattern, usually on one side.")
+    ];
+    var round9 = [
       wordAudio('postpone', 'P06/P0677200.mp3', 'verb (used with object)', "to put off to a later time; defer: He has postponed his departure until tomorrow."),
       wordAudio('coward', 'C09/C0930400.mp3', 'noun', "a person who lacks courage in facing danger, difficulty, opposition, pain, etc.; a timid or easily intimidated person."),
       wordAudio('error', 'E02/E0284800.mp3', 'noun', "a deviation from accuracy or correctness; a mistake, as in action or speech: His speech contained several factual errors."),
       wordAudio('owlishly', 'O02/O0271300.mp3', 'adjective', "resembling or characteristic of an owl: His thick glasses give him an owlish appearance."),
-      wordAudio('barrel', 'B01/B0118100.mp3', 'noun', "a cylindrical wooden container with slightly bulging sides made of staves hooped together, and with flat, parallel ends.")
-    ];
-    $scope.round7 = [
+      wordAudio('barrel', 'B01/B0118100.mp3', 'noun', "a cylindrical wooden container with slightly bulging sides made of staves hooped together, and with flat, parallel ends."),
       wordAudio('beagle', 'B01/B0174300.mp3', 'noun', "one of a breed of small hounds having long ears, short legs, and a usually black, tan, and white coat."),
       wordAudio('bawl', 'B01/B0165700.mp3', 'verb (used without object)', "to cry or wail lustily."),
       wordAudio('tomorrow', 'T03/T0357600.mp3', 'noun', "the day following today: Tomorrow is supposed to be sunny."),
       wordAudio('crumb', 'C10/C1011200.mp3', 'noun', "a small particle of bread, cake, etc., that has broken off."),
+    ];
+    var round10 = [
       wordAudio('dough', 'D04/D0491400.mp3', 'noun', "flour or meal combined with water, milk, etc., in a mass for baking into bread, cake, etc.; paste of bread."),
       wordAudio('rattler', 'R00/R0078600.mp3', 'noun', "a rattlesnake."),
       wordAudio('medley', 'M02/M0260600.mp3', 'noun', "a mixture, especially of heterogeneous elements; hodgepodge; jumble."),
       wordAudio('difficult', 'D02/D0295400.mp3', 'adjective', "not easily or readily done; requiring much labor, skill, or planning to be performed successfully; hard: a difficult job."),
-      wordAudio('drench', 'D05/D0526600.mp3', 'verb (used with object)', "to wet thoroughly; soak."),
-      wordAudio('bonkers', 'B04/B0488000.mp3', 'adjective', "mentally unbalanced; mad; crazy."),
-      wordAudio('seldom', 'S02/S0280100.mp3', 'adverb', "on only a few occasions; rarely; infrequently; not often: We seldom see our old neighbors anymore."),
-      wordAudio('fringe', 'F03/F0379100.mp3', 'noun', "a decorative border of thread, cord, or the like, usually hanging loosely from a raveled edge or separate strip."),
-      wordAudio('calico', 'C00/C0046600.mp3', 'noun', "a plain-woven cotton cloth printed with a figured pattern, usually on one side."),
-      wordAudio('buoyancy', 'B07/B0703700.mp3', 'noun', "the power to float or rise in a fluid; relative lightness.")
+      wordAudio('fringe', 'F03/F0379100.mp3', 'noun', "a decorative border of thread, cord, or the like, usually hanging loosely from a raveled edge or separate strip."),      
     ];
-    $scope.words = $scope.round1;
 
-    $scope.checks = [];
+    $scope.bee = {
+      mode: 'study',
+      roundLabels: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+      rounds: [round1, round2, round3, round4, round5, round6, round7, round8, round9, round10],
+      round: 0,
+      level: 'A'
+    };
+
+    $scope.words = $scope.bee.rounds[0];
+    $scope.checks = new Array($scope.words.length);
+    $scope.congrats = new Array($scope.bee.rounds.length);
 
     $scope.checkWord = function(text, value, idx) {
-      // value = angular.element(document.getElementById("spelling"+idx).text);
       var x = text === value? 1 : 0;
       $scope.checks[idx] = x;
-      if(x === 1) {
-        angular.element(document.getElementById('ding').play());
+      var expected = $scope.checks.length;
+      var actual = $scope.checks.filter(function(x){return x===1}).length;
+      if(expected === actual) {
+        $scope.allwords = $scope.words.map(function(x){return x.text;}).join(', ');
+        $scope.congrats[$scope.bee.round] = true;
+        // angular.element(document.getElementById('diana').play());
       } else {
-        angular.element(document.getElementById('buzzer').play());
+        if(x === 1) {
+          angular.element(document.getElementById('ding').play());
+        } else {
+          angular.element(document.getElementById('buzzer').play());
+        }
       }
     };
 
-    $scope.clear = function() {
-      $scope.checks = [];
+    $scope.loadLevel = function(l) {
+      $scope.words = $scope.bee.rounds[l];
+      $scope.checks = new Array($scope.words.length);
+      $scope.bee.mode='study';
+      $scope.bee.round = l;
+      $scope.bee.level = $scope.bee.roundLabels[l];
     };
 
     $scope.play = function(idx) {
