@@ -1,0 +1,27 @@
+<div xclass="xcontainer" style="width:100%;">
+  <div style="background-color:#222;">
+    <h2 style="font-weight:bold;text-align:center;padding:.25em 0;color:#fff;">SASHA <span style="color:#fdaf17">BEE</span> GAME</h2>
+  </div>
+  <div ng-repeat="word in words" style="width:100%;padding:1em;">
+    <div class="row word-panel" ng-class="{wrong:checks[$index]==false, right:checks[$index]}">
+      <div class="col-xs-2" style="xborder:1px solid red;text-align:right;">
+        <audio id="audio-player{{$index}}" controls style="display:none;">
+          <source src="{{word.audio}}" type="audio/mpeg">
+        </audio>
+        <a ng-click="play($index)">
+          <i class="fa fa-play fa-2x"></i>
+        </a>
+      </div>
+      <div class="col-xs-8" style="xborder:1px solid red;margin:0;padding:0;">
+        <input ng-model="spelling" autocomplete="off" autocorrect="off" autocapitalize="off" lowered style="padding-left:.2em;width:100%;font-size:1.2em;border-radius:2px;border:1px solid white;"></input>
+      </div>
+      <div class="col-xs-2">
+        <a ng-click="checkWord(word.text, spelling, $index)" style="text-align:left;xborder:1px solid white;">
+          <i ng-if="checks[$index] == undefined" class="fa fa-circle fa-2x" ng-cloak></i>
+          <i ng-if="checks[$index]" class="fa fa-check fa-2x" ng-cloak></i>
+          <i ng-if="checks[$index] == false" class="fa fa-times fa-2x" ng-cloak></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
