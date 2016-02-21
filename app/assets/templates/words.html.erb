@@ -1,16 +1,13 @@
 <audio id="ding" controls style="display:none;">
-  <source src="http://newt.phys.unsw.edu.au/music/bellplates/sounds/bellplate-corner4.mp3" type="audio/mpeg">
+  <source src="audio/ding.mp3" xsrc="http://newt.phys.unsw.edu.au/music/bellplates/sounds/bellplate-corner4.mp3" type="audio/mpeg">
 </audio>
 <audio id="buzzer" controls style="display:none;">
-  <source src="http://www.sounds.beachware.com/2illionzayp3may/zwvyaz/BUZZER.mp3" type="audio/mpeg">
+  <source src="audio/buzzer.mp3" xsrc="http://www.sounds.beachware.com/2illionzayp3may/zwvyaz/BUZZER.mp3" type="audio/mpeg">
 </audio>
-<audio id="diana" controls style="display:none;">
-  <source src="http://www.sounds.beachware.com/2illionzayp3may/zwvyaz/BUZZER.mp3" type="audio/mpeg">
+<audio id="fanfarrias" controls style="display:none;">
+  <source src="audio/fanfarrias.mp3" type="audio/mpeg">
 </audio>
-<div xclass="xcontainer" style="width:100%;">
-  <div style="background-color:#222;">
-    <h2 style="font-weight:bold;text-align:center;padding:.25em 0;color:#fff;">SASHA <span style="color:#fdaf17">BEE</span> GAME</h2>
-  </div>
+<div xclass="xcontainer" style="width:100%;margin-top:4em;">
   <div class="rounds">
     <ul unselectable="on" onselectstart="return false" onmousedown="return false" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
       <li ng-repeat="l in bee.roundLabels" ng-click="loadLevel($index);" ng-class="{active: bee.round===$index, success: congrats[$index]===true}">{{l}}</li>
@@ -22,7 +19,7 @@
       <div style="float:right;padding-right:2em;">Words: <b style="font-size:1.25em;color:#fdaf17">{{words.length}}</b></div>
     </div>
 
-<div style="height:{{windowHeight-270}}px;overflow-y:scroll;">
+<div style="height:{{windowHeight-275}}px;overflow-y:scroll;">
 
   <div ng-if="xcongrats()" class="word-panel right" style="color:#fff;margin:1.2em 1.5em;height:{{windowHeight-400}}px;">
     <div><b>Congratulations!</b></div>
@@ -38,13 +35,13 @@
     </div>
     <div ng-repeat="word in words" style="width:100%;padding:1em;">
       <div ng-if="bee.mode==='test'" class="row word-panel" ng-class="{wrong:checks[$index]==false, right:checks[$index]}" style="height:4em;position:relative;">
-        <div ng-if="checks[$index]==false" style="position:absolute;left:0;top:0px;">
+        <!-- <div ng-if="checks[$index]==false" style="position:absolute;left:0;top:0px;">
           <a ng-click="simon('study', $index)">
             <i class="fa fa-question-circle fa-2x" style="color:#fff"></i>
           </a>
-        </div>
+        </div> -->
 
-        <div class="col-xs-2 col-sm-1" style="xborder:1px solid red;text-align:right;"
+        <div class="col-xs-2 col-sm-1" style="text-align:right;">
           <audio id="audio-player{{$index}}" controls style="display:none;">
             <source src="{{word.audio}}" type="audio/mpeg">
           </audio>
@@ -53,29 +50,29 @@
           </a>
         </div>
         <div class="col-xs-8 col-sm-10" style="xborder:1px solid red;margin:0;padding:0;">
-          <input id="spelling{{$index}}" ng-init="spelling=values[$index]" ng-model="spelling" autocomplete="off" autocorrect="off" autocapitalize="off" lowered style="padding-left:.2em;width:100%;font-size:1.2em;border-radius:2px;border:1px solid white;" my-enter="checkWord(word.text, spelling, $index)"></input>
+          <input id="spelling{{$index}}" ng-init="spelling=values[$index]" ng-model="spelling" ng-change="updated($index)" autocomplete="off" autocorrect="off" autocapitalize="off" lowered style="padding-left:.2em;width:100%;font-size:1.2em;border-radius:2px;border:1px solid white;" my-enter="checkWord(word.text, spelling, $index)"></input>
         </div>
         <div class="col-xs-2 col-sm-1">
-          <a ng-click="checkWord(word.text, spelling, $index)" style="text-align:left;xborder:1px solid white;">
-            <i ng-if="!checks[$index]" class="fa fa-circle fa-2x" ng-cloak></i>
+          <a style="text-align:left;xborder:1px solid white;">
+            <i ng-click="checkWord(word.text, spelling, $index)" ng-if="checks[$index] == undefined" class="fa fa-circle fa-2x" ng-cloak></i>
             <i ng-if="checks[$index]" class="fa fa-check fa-2x" ng-cloak></i>
-            <!-- <i ng-if="checks[$index] == false" class="fa fa-times fa-2x" ng-cloak></i> -->
+            <i ng-if="checks[$index] == false" class="fa fa-question-circle fa-2x" style="cursor:pointer;" ng-click="simon('study', $index)" ng-cloak></i>
           </a>
         </div>
       </div>
       <div id="xword{{$index}}" ng-if="bee.mode==='study'" class="word-panel study" style="position:relative">
-        <div style="z-index:100;position:absolute;right:2px;top:2px;">
+        <!-- <div style="z-index:100;position:absolute;right:2px;top:2px;">
           <a ng-click="simon('test', $index)">
             <i class="fa fa-square fa-2x" style="color:#888"></i>
           </a>
-        </div>
+        </div> -->
         <div class="row">
           <div class="col-xs-2 col-sm-1 study-word" style="text-align:right;">
             <audio id="audio-player{{$index}}" controls style="display:none;">
               <source src="{{word.audio}}" type="audio/mpeg">
             </audio>
-            <a ng-click="play($index)">
-              <i class="fa fa-play fa-2x" style="color:#fdaf17"></i>
+            <a ng-click="simon('test', $index)">
+              <i class="fa fa-play fa-2x" style="color:#fdaf17;cursor:pointer;"></i>
             </a>
           </div>
           <div class="col-xs-10 col-sm-11" style="margin:0;padding:0;">
@@ -88,11 +85,11 @@
         </div>
       </div>
     </div>
-    <div style="text-align:right;padding-right:2em;margin-top:1em;">
-      <i ng-click="up()" class="fa fa-arrow-up fa-2x" style="background-color:#fdaf17;color:white;padding:.25em;border-radius:3px;"></i>
+    <div style="text-align:right;padding-right:2em;margin-top:1em;padding-bottom:2em;">
+      <i ng-click="up()" class="fa fa-arrow-up fa-2x" style="cursor:pointer;background-color:#fdaf17;color:white;padding:.25em;border-radius:3px;"></i>
     </div>
 
     </div>
   </div>
-  <div style="background-color:#222;color:#fff;width:100%;text-align:center;font-size:.85em;padding:1em 0;">Copyright &copy; 2016 Sasha Productions</div>
+  <div style="position:fixed;bottom:0;left:0;background-color:#222;color:#fff;width:100%;text-align:center;font-size:.85em;padding:1em 0;">Copyright &copy; 2016 Sasha Productions</div>
 </div>

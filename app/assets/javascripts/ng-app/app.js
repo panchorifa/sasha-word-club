@@ -50,12 +50,16 @@ angular.module('bee', [
       };
     };
 
+    $scope.updated = function(idx) {
+      if($scope.checks[idx] == false) {
+        $scope.checks[idx] = undefined;
+      }
+    }
 
     var w = angular.element($window);
     $scope.getWindowSize = function() {
       return { 'h': w.height(), 'w': w.width() };
     };
-
     $scope.$watch($scope.getWindowSize, function(newValue) {
       $scope.windowHeight = newValue.h;
       $scope.windowWidth = newValue.w;
@@ -65,11 +69,12 @@ angular.module('bee', [
 
     $scope.simon = function(x, idx) {
       $scope.bee.mode = x;
-      var spellingIdx = $scope.bee.wordIdx = idx || 0;
+      $scope.bee.wordIdx = idx || 0;
       if(x==='test') {
-        focus('spelling'+ spellingIdx);
+        $scope.values[idx] = '';
+        focus('spelling'+ $scope.bee.wordIdx);
         setTimeout(function(){
-          angular.element(document.getElementById('audio-player'+ spellingIdx).play());
+          angular.element(document.getElementById('audio-player'+ $scope.bee.wordIdx).play());
         }, 1000);
       }else {
         xscroll('xword'+idx);
@@ -96,7 +101,7 @@ angular.module('bee', [
       wordAudio('nurture', 'N02/N0268400.mp3', 'verb (used with object)', "to feed and protect: to nurture one's offspring."),
       wordAudio('vicinity', 'V01/V0113900.mp3', 'noun', "the area or region near or about a place; surrounding district; neighborhood: There are no stores in the vicinity of our house."),
       wordAudio('wharf', 'NEW/NEW15995.mp3', 'noun', "a structure built on the shore of or projecting into a harbor, stream, etc., so that vessels may be moored alongside to load or unload or to lie at rest; quay; pier."),
-      wordAudio('eerily', 'E00/E0052200.mp3', 'adjective', "uncanny, so as to inspire superstitious fear; weird: an eerie midnight howl."),
+      wordAudio('eerie', 'E00/E0052200.mp3', 'adjective', "uncanny, so as to inspire superstitious fear; weird: an eerie midnight howl."),
       wordAudio('mineral', 'M04/M0453800.mp3', 'noun', "any of a class of substances occurring in nature, usually comprising inorganic substances, as quartz or feldspar, of definite chemical composition and usually of definite crystal structure, but sometimes also including rocks formed by these substances as well as certain natural products of organic origin, as asphalt or coal."),
       wordAudio('aloha', 'A03/A0344200.mp3', 'noun, interjection', "hello; greetings."),
       wordAudio('coffee', 'C06/C0620300.mp3', 'noun', "a beverage consisting of a decoction or infusion of the roasted ground or crushed seeds (coffee beans) of the two-seeded fruit (coffee berry) of certain coffee trees."),
@@ -376,7 +381,7 @@ angular.module('bee', [
       if(expected === actual) {
         $scope.allwords = $scope.words.map(function(x){return x.text;}).join(', ');
         $scope.congrats[$scope.bee.round] = true;
-        // angular.element(document.getElementById('diana').play());
+        angular.element(document.getElementById('fanfarrias').play());
       } else {
         if(x === 1) {
           angular.element(document.getElementById('ding').play());
@@ -389,7 +394,7 @@ angular.module('bee', [
           }, 1000);
         } else {
           angular.element(document.getElementById('buzzer').play());
-          focus('spelling'+$scope.bee.wordIdx);
+          focus('spelling'+idx);
         }
       }
     };
