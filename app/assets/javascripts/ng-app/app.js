@@ -27,8 +27,8 @@ angular.module('bee', [
   function ($scope) {
   }
 ])
-.controller('WordsCtrl', ['$scope', '$sce',
-  function ($scope, $sce) {
+.controller('WordsCtrl', ['$scope', '$sce', 'focus', '$window', '$timeout', 'xscroll',
+  function ($scope, $sce, focus, $window, $timeout, xscroll) {
     var AUDIO_URL = 'http://static.sfdict.com/staticrep/dictaudio/';
     var wordAudio = function(word, audio, pg, definition) {
       return {
@@ -39,11 +39,40 @@ angular.module('bee', [
       };
     };
 
-    $scope.simon = function(x) {
+    $scope.simon = function(x, idx) {
       $scope.bee.mode = x;
+      var spellingIdx = $scope.bee.wordIdx = idx || 0;
+      if(x==='test') {
+        focus('spelling'+ spellingIdx);
+        setTimeout(function(){
+          angular.element(document.getElementById('audio-player'+ spellingIdx).play());
+        }, 1000);
+      }else {
+        xscroll('xword'+idx);
+      }
     }
 
     var round1 = [
+      wordAudio('reward', 'R02/R0271400.mp3', 'noun', "a sum of money offered for the detection or capture of a criminal, the recovery of lost or stolen property, etc."),
+      wordAudio('caramel', 'C01/C0127400.mp3', 'noun', "a liquid made by cooking sugar until it changes color, used for coloring and flavoring food."),
+      wordAudio('trademark', 'T04/T0421600.mp3', 'noun', "any name, symbol, figure, letter, word, or mark adopted and used by a manufacturer or merchant in order to designate his or her goods and to distinguish them from those manufactured or sold by others. A trademark is a proprietary term that is usually registered with the Patent and Trademark Office to assure its exclusive use by its owner."),
+      wordAudio('husband', 'H04/H0448400.mp3', 'noun', "a married man, especially when considered in relation to his partner in marriage."),
+      wordAudio('hallway', 'H00/H0042500.mp3', 'noun', "a corridor, as in a building."),
+      wordAudio('brunch', 'B06/B0653000.mp3', 'noun', "a meal that serves as both breakfast and lunch."),
+      wordAudio('splashy', 'S08/S0822600.mp3', 'adjective', "making a splash or splashes."),
+      wordAudio('ping-pong', 'P04/P0465900.mp3', 'verb (used with object)', "to move back and forth or transfer rapidly from one locale, job, etc., to another; switch: The patient was ping-ponged from one medical specialist to another."),
+      wordAudio('brunch', 'B06/B0653000.mp3', 'noun', "a meal that serves as both breakfast and lunch."),
+      wordAudio('length', 'L01/L0177000.mp3', 'noun', "the longest extent of anything as measured from end to end: the length of a river."),
+      wordAudio('canopy', 'C00/C0098700.mp3', 'noun', "a covering, usually of fabric, supported on poles or suspended above a bed, throne, exalted personage, or sacred object."),
+      wordAudio('surefire', 'S11/S1152800.mp3', 'adjective', "sure to work; foolproof: a surefire moneymaking scheme."),
+      wordAudio('passport', 'P01/P0153400.mp3', 'noun', "an official document issued by the government of a country to one of its citizens and, varying from country to country, authorizing travel to foreign countries and authenticating the bearer's identity, citizenship, right to protection while abroad, and right to reenter his or her native country."),
+      wordAudio('habits', 'H00/H0002900.mp3', 'noun', "an acquired behavior pattern regularly followed until it has become almost involuntary: the habit of looking both ways before crossing the street."),
+      wordAudio('quack', 'Q00/Q0005000.mp3', 'noun', "the harsh, throaty cry of a duck or any similar sound."),
+      wordAudio('connect', 'C07/C0762100.mp3', 'verb (used with object)', "to join, link, or fasten together; unite or bind: to connect the two cities by a bridge; Communication satellites connect the local stations into a network."),
+      wordAudio('nurture', 'N02/N0268400.mp3', 'verb (used with object)', "to feed and protect: to nurture one's offspring."),
+      wordAudio('vicinity', 'V01/V0113900.mp3', 'noun', "the area or region near or about a place; surrounding district; neighborhood: There are no stores in the vicinity of our house."),
+      wordAudio('wharf', 'NEW/NEW15995.mp3', 'noun', "a structure built on the shore of or projecting into a harbor, stream, etc., so that vessels may be moored alongside to load or unload or to lie at rest; quay; pier."),
+      wordAudio('eerily', 'E00/E0052200.mp3', 'adjective', "uncanny, so as to inspire superstitious fear; weird: an eerie midnight howl."),
       wordAudio('mineral', 'M04/M0453800.mp3', 'noun', "any of a class of substances occurring in nature, usually comprising inorganic substances, as quartz or feldspar, of definite chemical composition and usually of definite crystal structure, but sometimes also including rocks formed by these substances as well as certain natural products of organic origin, as asphalt or coal."),
       wordAudio('aloha', 'A03/A0344200.mp3', 'noun, interjection', "hello; greetings."),
       wordAudio('coffee', 'C06/C0620300.mp3', 'noun', "a beverage consisting of a decoction or infusion of the roasted ground or crushed seeds (coffee beans) of the two-seeded fruit (coffee berry) of certain coffee trees."),
@@ -51,6 +80,21 @@ angular.module('bee', [
       wordAudio('parade', 'P00/P0089700.mp3', 'noun', "a large public procession, usually including a marching band and often of a festive nature, held in honor of an anniversary, person, event, etc.")
     ];
     var round2 = [
+      wordAudio('lavender', 'L01/L0118500.mp3', 'noun', "a pale bluish purple."),
+      wordAudio('gauze', 'G00/G0076400.mp3', 'noun', "any thin and often transparent fabric made from any fiber in a plain or leno weave."),
+      wordAudio('mirthful', 'M04/M0474900.mp3', 'adjective', "joyous; gay; jolly: a mirthful laugh."),
+      wordAudio('beret', 'B02/B0259300.mp3', 'noun', "a soft, visorless cap with a close-fitting headband and a wide, round top often with a tab at its center."),
+      wordAudio('evaporation', 'E03/E0359500.mp3', 'noun', "the act or process of evaporating."),
+      wordAudio('vigorously', 'V01/V0127500.mp3', 'adjective', "full of or characterized by vigor: a vigorous effort."),
+      wordAudio('boycott', 'B05/B0558000.mp3', 'verb (used with object)', "to combine in abstaining from, or preventing dealings with, as a means of intimidation or coercion: to boycott a store."),
+      wordAudio('impulse', 'I00/I0089500.mp3', 'noun', "the influence of a particular feeling, mental state, etc.: to act under a generous impulse; to strike out at someone from an angry impulse."),
+      wordAudio('winsome', 'W01/W0194200.mp3', 'adjective', "sweetly or innocently charming; winning; engaging: a winsome smile."),
+      wordAudio('alternate', 'A03/A0354400.mp3', 'verb (used without object)', "to interchange repeatedly and regularly with one another in time or place; rotate (usually followed by with): Day alternates with night."),
+      wordAudio('ottoman', 'O02/O0206600.mp3', 'adjective', "of or relating to the Ottoman Empire."),
+      wordAudio('entertain', 'E02/E0212000.mp3', 'verb (used with object)', "to hold the attention of pleasantly or agreeably; divert; amuse."),
+      wordAudio('anorak', 'A05/A0510400.mp3', 'noun', "a hooded pullover jacket originally made of fur and worn in the arctic, now made of any weather-resistant fabric."),
+      wordAudio('documentary', 'D04/D0428200.mp3', 'adjective', "Also, documental documents: a documentary history of France."),
+      wordAudio('jargon', 'J00/J0028600.mp3', 'noun', "the language, especially the vocabulary, peculiar to a particular trade, profession, or group: medical jargon."),
       wordAudio('kiwi', 'K01/K0134100.mp3', 'noun', "any of several flightless, ratite birds of the genus Apteryx, of New Zealand, allied to the extinct moas."),
       wordAudio('eyebrow', 'E04/E0443100.mp3', 'noun', "the arch or ridge forming the upper part of the orbit of the eye."),
       wordAudio('velcro', 'V00/V0061100.mp3', 'noun', "a brand of fastening tape consisting of opposing pieces of fabric, one with a dense arrangement of tiny nylon hooks and the other with a dense nylon pile, that interlock when pressed together, used as a closure on garments, luggage, etc., in place of buttons, zippers, and the like."),
@@ -77,7 +121,17 @@ angular.module('bee', [
       wordAudio('polar', 'P05/P0586100.mp3', 'adjective', 'of or relating to the North or South Pole.'),
       wordAudio('field', 'F01/F0126400.mp3', 'noun', 'an expanse of open or cleared ground, especially a piece of land suitable or used for pasture or tillage.'),
       wordAudio('ocean', 'O00/O0026100.mp3', 'noun', "the vast body of salt water that covers almost three fourths of the earth's surface."),
-      wordAudio('acre', 'A00/A0095400.mp3', 'noun', 'a common measure of area: in the U.S. and U.K., 1 acre equals 4,840 square yards (4,047 square meters) or 0.405 hectare; 640 acres equals one square mile.')
+      wordAudio('acre', 'A00/A0095400.mp3', 'noun', 'a common measure of area: in the U.S. and U.K., 1 acre equals 4,840 square yards (4,047 square meters) or 0.405 hectare; 640 acres equals one square mile.'),
+      wordAudio('gratis', 'G03/G0314700.mp3', 'adverb', "without charge or payment; free: The manufacturer provided an extra set of coat buttons gratis."),
+      wordAudio('sympathy', 'S12/S1207500.mp3', 'noun', "harmony of or agreement in feeling, as between persons or on the part of one person with respect to another."),
+      wordAudio('paragon', 'P00/P0093300.mp3', 'noun', "a model or pattern of excellence or of a particular excellence: a paragon of virtue."),
+      wordAudio('festooned', 'F01/F0106900.mp3', 'noun', "a string or chain of flowers, foliage, ribbon, etc., suspended in a curve between two points."),
+      wordAudio('tonsils', 'T03/T0364300.mp3', 'noun', "a prominent oval mass of lymphoid tissue on each side of the throat."),
+      wordAudio('mogul', 'M05/M0526700.mp3', 'noun', "a bump or mound of hard snow on a ski slope."),
+      wordAudio('frequently', 'F03/F0368500.mp3', 'adverb', "often; many times; at short intervals."),
+      wordAudio('pomposity', 'P06/P0629800.mp3', 'noun', "the quality of being pompous."),
+      wordAudio('marathon', 'M01/M0135400.mp3', 'noun', "a foot race over a course measuring 26 mi. 385 yards (42 km 195 meters)."),
+      wordAudio('polemic', 'P05/P0588800.mp3', 'noun', "a controversial argument, as one against some opinion, doctrine, etc.")
     ];
     var round4 = [
       wordAudio('euro', 'E03/E0348100.mp3', 'noun', "the single European currency, which replaced the national currencies of France, Germany, Spain, Italy, Greece, Portugal, Luxembourg, Austria, Finland, the Republic of Ireland, Belgium, and the Netherlands in 2002. Seventeen member states of the European Union now use the euro."),
@@ -99,7 +153,12 @@ angular.module('bee', [
       wordAudio('parable', 'P00/P0087100.mp3', 'noun', 'a short allegorical story designed to illustrate or teach some truth, religious principle, or moral lesson.'),
       wordAudio('chemistry', 'C03/C0366800.mp3', 'noun', 'the science that deals with the composition and properties of substances and various elementary forms of matter.'),
       wordAudio('swollen', 'S11/S1195200.mp3', 'verb', 'a past participle of swell. (especially of a part of the body) become larger or rounder in size, typically as a result of an accumulation of fluid.'),
-      wordAudio('diagonal', 'D02/D0258400.mp3', 'adjective', 'Mathematics. connecting two nonadjacent angles or vertices of a polygon or polyhedron, as a straight line.')
+      wordAudio('diagonal', 'D02/D0258400.mp3', 'adjective', 'Mathematics. connecting two nonadjacent angles or vertices of a polygon or polyhedron, as a straight line.'),
+      wordAudio('personnel', 'P03/P0306700.mp3', 'noun', "a body of persons employed in an organization or place of work."),
+      wordAudio('tapioca', 'T00/T0060800.mp3', 'noun', "a food substance prepared from cassava in granular, flake, pellet (pearl tapioca) or flour form, used in puddings, as a thickener, etc."),
+      wordAudio('electrode', 'E00/E0088500.mp3', 'noun', "a conductor, not necessarily metallic, through which a current enters or leaves a nonmetallic medium, as an electrolytic cell, arc generator, vacuum tube, or gaseous discharge tube."),
+      wordAudio('modular', 'M05/M0523000.mp3', 'adjective', "of or relating to a module or a modulus."),
+      wordAudio('quagmire', 'Q00/Q0014600.mp3', 'noun', "an area of miry or boggy ground whose surface yields under the tread; a bog.")
     ];
     var round5 = [
       wordAudio('fulfill', 'F04/F0407400.mp3', 'verb (used with object)', "making someone satisfied or happy because of fully developing their character or abilities: a fulfilling and rewarding career"),
@@ -219,13 +278,52 @@ angular.module('bee', [
       wordAudio('bawl', 'B01/B0165700.mp3', 'verb (used without object)', "to cry or wail lustily."),
       wordAudio('tomorrow', 'T03/T0357600.mp3', 'noun', "the day following today: Tomorrow is supposed to be sunny."),
       wordAudio('crumb', 'C10/C1011200.mp3', 'noun', "a small particle of bread, cake, etc., that has broken off."),
-    ];
-    var round10 = [
       wordAudio('dough', 'D04/D0491400.mp3', 'noun', "flour or meal combined with water, milk, etc., in a mass for baking into bread, cake, etc.; paste of bread."),
       wordAudio('rattler', 'R00/R0078600.mp3', 'noun', "a rattlesnake."),
       wordAudio('medley', 'M02/M0260600.mp3', 'noun', "a mixture, especially of heterogeneous elements; hodgepodge; jumble."),
       wordAudio('difficult', 'D02/D0295400.mp3', 'adjective', "not easily or readily done; requiring much labor, skill, or planning to be performed successfully; hard: a difficult job."),
       wordAudio('fringe', 'F03/F0379100.mp3', 'noun', "a decorative border of thread, cord, or the like, usually hanging loosely from a raveled edge or separate strip."),
+      wordAudio('casserole', 'C01/C0192200.mp3', 'noun', "a baking dish of glass, pottery, etc., usually with a cover."),
+      wordAudio('platinum', 'P05/P0529100.mp3', 'noun', "Chemistry. a heavy, grayish-white, highly malleable and ductile metallic element, resistant to most chemicals, practically unoxidizable except in the presence of bases, and fusible only at extremely high temperatures: used for making chemical and scientific apparatus, as a catalyst in the oxidation of ammonia to nitric acid, and in jewelry. Symbol:  Pt; atomic weight:  195.09; atomic number:  78; specific gravity:  21.5 at 20&#176;C."),
+      wordAudio('mundane', 'M06/M0687000.mp3', 'adjective', "common; ordinary; banal; unimaginative."),
+      wordAudio('alpaca', 'A03/A0346700.mp3', 'noun', "a domesticated South American ruminant, Lama pacos, having long, soft, silky fleece, related to the llama and believed to be a variety of the guanaco."),
+      wordAudio('billiards', 'B03/B0331100.mp3', 'noun', "any of several games played with hard balls of ivory or of a similar material that are driven with a cue on a cloth-covered table enclosed by a raised rim of rubber, especially a game played with a cue ball and two object balls on a table without pockets."),
+      wordAudio('cyclone', 'C10/C1087200.mp3', 'noun', "a large-scale, atmospheric wind-and-pressure system characterized by low pressure at its center and by circular wind motion, counterclockwise in the Northern Hemisphere, clockwise in the Southern Hemisphere."),
+      wordAudio('scrooge', 'S02/S0228200.mp3', 'verb (used with or without object)', "scrouge."),
+      wordAudio('genteel', 'G01/G0106000.mp3', 'adjective', "belonging or suited to polite society."),
+      wordAudio('collude', 'C06/C0651400.mp3', 'verb (used without object)', "to act together through a secret understanding, especially with evil or harmful intent."),
+      wordAudio('guardian', 'G03/G0381500.mp3', 'noun', "a person who guards, protects, or preserves."),
+      wordAudio('mosaic', 'M06/M0624500.mp3', 'noun', "a picture or decoration made of small, usually colored pieces of inlaid stone, glass, etc."),
+    ];
+    var round10 = [
+      wordAudio('enunciate', 'E02/E0221600.mp3', 'verb (used with object)', "to utter or pronounce (words, sentences, etc.), especially in an articulate or a particular manner: He enunciates his words distinctly."),
+      wordAudio('melodramatic', 'M02/M0287400.mp3', 'adjective', "of, like, or befitting melodrama."),
+      wordAudio('epoxy', 'E02/E0259600.mp3', 'adjective', "having the structure of an epoxide."),
+      wordAudio('chortle', 'C04/C0448200.mp3', 'verb (used without object)', "to chuckle gleefully."),
+      wordAudio('yurt', 'Y00/Y0052200.mp3', 'noun', "a tentlike dwelling of the Mongol and Turkic peoples of central Asia, consisting of a cylindrical wall of poles in a lattice arrangement with a conical roof of poles, both covered by felt or skins."),
+      wordAudio('wysiwyg', 'W02/W0262600.mp3', 'adjective', "of, relating to, or noting a screen display that shows text exactly as it will appear in printed output, including underlining, various typefaces, as italics, line spacing, end-of-line breaks, and paragraph indentations."),
+      wordAudio('banquet', 'B00/B0084900.mp3', 'noun', "a lavish meal; feast."),
+      wordAudio('escarpment', 'E02/E0294100.mp3', 'noun', "Geology. a long, precipitous, clifflike ridge of land, rock, or the like, commonly formed by faulting or fracturing of the earth's crust."),
+      wordAudio('zealous', 'Z00/Z0010800.mp3', 'adjective', "full of, characterized by, or due to zeal; ardently active, devoted, or diligent. Synonyms: enthusiastic, eager, fervid, fervent, intense, passionate, warm."),
+      wordAudio('decor', 'D00/D0099700.mp3', 'noun', "style or mode of decoration, as of a room, building, or the like: modern office d&#233;cor; a bedroom having a Spanish d&#233;cor."),
+      wordAudio('revelation', 'R02/R0262500.mp3', 'noun', "the act of revealing or disclosing; disclosure."),
+      wordAudio('vague', 'V00/V0007300.mp3', 'adjective', "not clearly or explicitly stated or expressed: vague promises."),
+      wordAudio('cumulus', 'C10/C1045200.mp3', 'noun', "a heap; pile."),
+      wordAudio('montage', 'M05/M0584800.mp3', 'noun', "the technique of combining in a single composition pictorial elements from various sources, as parts of different photographs or fragments of printing, either to give the illusion that the elements belonged together originally or to allow each element to retain its separate identity as a means of adding interest or meaning to the composition."),
+      wordAudio('query', 'Q00/Q0033800.mp3', 'noun', "a question; an inquiry."),
+      wordAudio('maximum', 'M02/M0224900.mp3', 'noun', "the greatest quantity or amount possible, assignable, allowable, etc."),
+      wordAudio('territory', 'T01/T0166900.mp3', 'noun', "any tract of land; region or district."),
+      wordAudio('nationalism', 'N00/N0037800.mp3', 'noun', "spirit or aspirations common to the whole of a nation."),
+      wordAudio('latency', 'L00/L0099800.mp3', 'noun', "the state of being latent."),
+      wordAudio('obscure', 'O00/O0016300.mp3', 'adjective', "(of meaning) not clear or plain; ambiguous, vague, or uncertain: an obscure sentence in the contract."),
+      wordAudio('gemini', 'G00/G0091100.mp3', 'plural noun', "Astronomy. the Twins, a zodiacal constellation between Taurus and Cancer containing the bright stars Castor and Pollux."),
+      wordAudio('alfresco', 'A02/A0298700.mp3', 'adverb', "out-of-doors; in the open air: to dine alfresco."),
+      wordAudio('sustainable', 'NEW2014/4417583.mp3', 'adjective', "capable of being supported or upheld, as by having its weight borne from below."),
+      wordAudio('tarmac', 'T00/T0067900.mp3', 'noun', "a brand of bituminous binder, similar to tarmacadam, for surfacing roads, airport runways, parking areas, etc."),
+      wordAudio('approximate', 'A06/A0619000.mp3', 'adjective', "near or approaching a certain state, condition, goal, or standard."),
+      wordAudio('hypnotic', 'H05/H0505900.mp3', 'adjective', "of or relating to hypnosis or hypnotism."),
+      wordAudio('tranquil', 'T04/T0431700.mp3', 'adjective', "free from commotion or tumult; peaceful; quiet; calm: a tranquil country place."),
+      wordAudio('synthetic', 'S12/S1227000.mp3', 'adjective', "of, pertaining to, proceeding by, or involving synthesis (opposed to analytic)."),
     ];
 
     $scope.bee = {
@@ -233,6 +331,7 @@ angular.module('bee', [
       roundLabels: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
       rounds: [round1, round2, round3, round4, round5, round6, round7, round8, round9, round10],
       round: 0,
+      wordIdx: 0,
       level: 'A'
     };
 
@@ -256,10 +355,23 @@ angular.module('bee', [
       } else {
         if(x === 1) {
           angular.element(document.getElementById('ding').play());
+          $scope.bee.wordIdx=idx+1;
+          setTimeout(function(){
+            focus('spelling'+$scope.bee.wordIdx);
+            setTimeout(function(){
+              angular.element(document.getElementById('audio-player'+ $scope.bee.wordIdx).play());
+            },1000);
+          }, 1000);
         } else {
           angular.element(document.getElementById('buzzer').play());
+          focus('spelling'+$scope.bee.wordIdx);
         }
       }
+    };
+
+    $scope.up = function() {
+      focus('take-test');
+      $window.scrollTo(0, 0);
     };
 
     $scope.loadLevel = function(l) {
@@ -275,6 +387,56 @@ angular.module('bee', [
     }
   }
 ])
+.factory('focus', function($timeout, $window) {
+    return function(id) {
+      // timeout makes sure that it is invoked after any other event has been triggered.
+      // e.g. click events that need to run before the focus or
+      // inputs elements that are in a disabled state but are enabled when those events
+      // are triggered.
+      $timeout(function() {
+        var element = $window.document.getElementById(id);
+        if(element) {
+          element.focus();
+        }
+      });
+    };
+})
+.factory('xscroll', function($timeout, $window) {
+    return function(id) {
+      $timeout(function() {
+        var element = $window.document.getElementById(id);
+        if(element) {
+          $window.scrollTo(0, element.offsetTop-30);
+        }
+      });
+    };
+})
+.directive('eventFocus', function(focus) {
+   return function(scope, elem, attr) {
+     elem.on(attr.eventFocus, function() {
+       focus(attr.eventFocusId);
+     });
+
+     // Removes bound events in the element itself
+     // when the scope is destroyed
+     scope.$on('$destroy', function() {
+       elem.off(attr.eventFocus);
+     });
+   };
+})
+.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+})
 .directive('lowered', function() {
    return {
      require: 'ngModel',
@@ -292,6 +454,26 @@ angular.module('bee', [
          lower(scope[attrs.ngModel]);
      }
    };
+})
+.directive('focusMe', function($timeout, $parse) {
+  return {
+    //scope: true,   // optionally create a child scope
+    link: function(scope, element, attrs) {
+      var model = $parse(attrs.focusMe);
+      scope.$watch(model, function(value) {
+        if(value === true) {
+          $timeout(function() {
+            element[0].focus();
+          });
+        }
+      });
+      // to address @blesh's comment, set attribute value to 'false'
+      // on blur event:
+      element.bind('blur', function() {
+         scope.$apply(model.assign(scope, false));
+      });
+    }
+  };
 });
 
 

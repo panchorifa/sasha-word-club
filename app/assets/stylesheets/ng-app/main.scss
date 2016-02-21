@@ -5,6 +5,11 @@
 // // @import "dashboard";
 @import "home";
 
+.xcontainer {
+  max-width:960px;
+  margin: 0 auto;
+  margin-bottom:4em;
+}
 
 i {
   color: #fff;//fdaf17;
@@ -36,12 +41,14 @@ i {
     margin:0;
     padding:0;
     li {
+      cursor:pointer;
       display: inline-block;
       background-color:#222;
       color:#fff;
       padding:.5em;
       width:2em;
       margin:.15em;
+      border-radius: 3px;
       &.active {
         background-color: #fdaf17;
       }
@@ -52,74 +59,9 @@ i {
   }
 }
 
-//
-// body {
-//   background-color:#222;
-//   .btn {
-//     background-color:white;
-//     text-decoration: none;
-//     padding:.5em 1em;
-//     font-size:2em;
-//     width:90%;
-//     border-radius:3px;
-//     color:#222;
-//     font-family: Arial;
-//     text-transform: uppercase;
-//   }
-//   .xcontainer {
-//     max-width:960px;
-//     margin:0 auto;
-//
-//     .word-panel {
-//       margin-bottom:1em;
-//       width:100%;
-//       background-color:#000;
-//       padding-bottom:2px;
-//
-//       .audio-field {
-//         padding:.5em;
-//         float:left;
-//         background-color:#000;
-//       }
-//
-//       input {
-//         width:87%;
-//         border:none;
-//         font-size:2.4em;
-//         margin-top:2px;
-//         padding-left:3px;
-//       }
-//
-//       i {
-//         color:#fff;
-//         padding-left:.3em;
-//         margin-top:-5px;
-//       }
-//     }
-//   }
-// }
-//
-// @media only screen
-// and (min-device-width : 414px)
-// and (max-device-width : 736px) {
-//   body {
-//     background-color:#222;
-//
-//     .xcontainer {
-//       .word-panel {
-//         input {
-//           width:70%;
-//         }
-//       }
-//     }
-//   }
-//
-//   #home {
-//     h1 {
-//       color:#000;
-//     }
-//   }
-// }
+.fa-play {
+  cursor:pointer;
+}
 
 .level-info {
   text-align:center;
@@ -147,5 +89,28 @@ and (-webkit-min-device-pixel-ratio: 1)  {
   }
   .word-panel {
     margin:.5em 0;
+  }
+}
+
+@media only screen
+and (min-device-width : 960px) {
+  body {
+    background-color: #000;
+
+    .xcontainer {
+      background-color: #fff;
+    }
+    .rounds {
+      ul {
+        li {
+          margin:1em;
+          border-radius: 3px;
+        }
+      }
+    }
+    .study-word {
+      margin-left:-1em;
+    }
+
   }
 }
