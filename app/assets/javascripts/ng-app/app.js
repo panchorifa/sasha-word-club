@@ -23,8 +23,19 @@ angular.module('bee', [
     requireBase: false
   });
 }])
-.controller('AppCtrl', ['$scope',
-  function ($scope) {
+.controller('AppCtrl', ['$scope', '$window',
+  function ($scope, $window) {
+    var w = angular.element($window);
+    $scope.getWindowSize = function() {
+      return { 'h': w.height(), 'w': w.width() };
+    };
+
+    $scope.$watch($scope.getWindowSize, function(newValue) {
+      $scope.windowHeight = newValue.h;
+      $scope.windowWidth = newValue.w;
+    }, true);
+
+    w.bind('resize', function() { $scope.$apply(); });
   }
 ])
 .controller('WordsCtrl', ['$scope', '$sce', 'focus', '$window', '$timeout', 'xscroll',
@@ -38,6 +49,19 @@ angular.module('bee', [
         definition: definition
       };
     };
+
+
+    var w = angular.element($window);
+    $scope.getWindowSize = function() {
+      return { 'h': w.height(), 'w': w.width() };
+    };
+
+    $scope.$watch($scope.getWindowSize, function(newValue) {
+      $scope.windowHeight = newValue.h;
+      $scope.windowWidth = newValue.w;
+    }, true);
+
+    w.bind('resize', function() { $scope.$apply(); });
 
     $scope.simon = function(x, idx) {
       $scope.bee.mode = x;
@@ -61,12 +85,12 @@ angular.module('bee', [
       wordAudio('brunch', 'B06/B0653000.mp3', 'noun', "a meal that serves as both breakfast and lunch."),
       wordAudio('splashy', 'S08/S0822600.mp3', 'adjective', "making a splash or splashes."),
       wordAudio('ping-pong', 'P04/P0465900.mp3', 'verb (used with object)', "to move back and forth or transfer rapidly from one locale, job, etc., to another; switch: The patient was ping-ponged from one medical specialist to another."),
-      wordAudio('brunch', 'B06/B0653000.mp3', 'noun', "a meal that serves as both breakfast and lunch."),
+      wordAudio('obscure', 'O00/O0016300.mp3', 'adjective', "(of meaning) not clear or plain; ambiguous, vague, or uncertain: an obscure sentence in the contract."),
       wordAudio('length', 'L01/L0177000.mp3', 'noun', "the longest extent of anything as measured from end to end: the length of a river."),
       wordAudio('canopy', 'C00/C0098700.mp3', 'noun', "a covering, usually of fabric, supported on poles or suspended above a bed, throne, exalted personage, or sacred object."),
       wordAudio('surefire', 'S11/S1152800.mp3', 'adjective', "sure to work; foolproof: a surefire moneymaking scheme."),
       wordAudio('passport', 'P01/P0153400.mp3', 'noun', "an official document issued by the government of a country to one of its citizens and, varying from country to country, authorizing travel to foreign countries and authenticating the bearer's identity, citizenship, right to protection while abroad, and right to reenter his or her native country."),
-      wordAudio('habits', 'H00/H0002900.mp3', 'noun', "an acquired behavior pattern regularly followed until it has become almost involuntary: the habit of looking both ways before crossing the street."),
+      wordAudio('habit', 'H00/H0002900.mp3', 'noun', "an acquired behavior pattern regularly followed until it has become almost involuntary: the habit of looking both ways before crossing the street."),
       wordAudio('quack', 'Q00/Q0005000.mp3', 'noun', "the harsh, throaty cry of a duck or any similar sound."),
       wordAudio('connect', 'C07/C0762100.mp3', 'verb (used with object)', "to join, link, or fasten together; unite or bind: to connect the two cities by a bridge; Communication satellites connect the local stations into a network."),
       wordAudio('nurture', 'N02/N0268400.mp3', 'verb (used with object)', "to feed and protect: to nurture one's offspring."),
@@ -315,7 +339,6 @@ angular.module('bee', [
       wordAudio('territory', 'T01/T0166900.mp3', 'noun', "any tract of land; region or district."),
       wordAudio('nationalism', 'N00/N0037800.mp3', 'noun', "spirit or aspirations common to the whole of a nation."),
       wordAudio('latency', 'L00/L0099800.mp3', 'noun', "the state of being latent."),
-      wordAudio('obscure', 'O00/O0016300.mp3', 'adjective', "(of meaning) not clear or plain; ambiguous, vague, or uncertain: an obscure sentence in the contract."),
       wordAudio('gemini', 'G00/G0091100.mp3', 'plural noun', "Astronomy. the Twins, a zodiacal constellation between Taurus and Cancer containing the bright stars Castor and Pollux."),
       wordAudio('alfresco', 'A02/A0298700.mp3', 'adverb', "out-of-doors; in the open air: to dine alfresco."),
       wordAudio('sustainable', 'NEW2014/4417583.mp3', 'adjective', "capable of being supported or upheld, as by having its weight borne from below."),
@@ -336,6 +359,7 @@ angular.module('bee', [
     };
 
     $scope.words = $scope.bee.rounds[0];
+    $scope.values = new Array($scope.words.length);
     $scope.checks = new Array($scope.words.length);
     $scope.congrats = new Array($scope.bee.rounds.length);
 
@@ -346,6 +370,7 @@ angular.module('bee', [
     $scope.checkWord = function(text, value, idx) {
       var x = text === value? 1 : 0;
       $scope.checks[idx] = x;
+      $scope.values[idx] = value;
       var expected = $scope.checks.length;
       var actual = $scope.checks.filter(function(x){return x===1}).length;
       if(expected === actual) {
