@@ -1,0 +1,37 @@
+<div ng-include src="'audios.html.erb'"></div>
+<div xclass="xcontainer" style="width:100%;margin-top:4em;">
+  <div class="rounds">
+    <ul unselectable="on" onselectstart="return false" onmousedown="return false" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
+      <li ng-repeat="l in bee.roundLabels" ng-click="loadLevel($index);" ng-class="{active: bee.round===$index, success: congrats[$index]===true}">{{l}}</li>
+    </ul>
+  </div>
+  <div>
+    <div class="level-info" unselectable="on" onselectstart="return false" onmousedown="return false" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;background-color:#222;color:white;height:3em;margin-top:1em;font-size:1.25em;line-height:1em;">
+      <div style="float:left;padding-left:2em;">Round: <b style="font-size:1.25em;color:#fdaf17">{{bee.level}}</b></div>
+      <div style="float:right;padding-right:2em;">Words: <b style="font-size:1.25em;color:#fdaf17">{{words.length}}</b></div>
+    </div>
+
+<div style="height:{{windowHeight-275}}px;overflow-y:scroll;">
+
+  <div ng-include src="'congrats.html.erb'"></div>
+  <!-- <div ng-include="'words'"></div> -->
+
+  <div ng-if="!xcongrats()">
+    <div class="round-actions row" style="margin-top:1.2em;">
+      <div class="round-action col-xs-4" ng-click="simon('study')" ng-class="{active: bee.mode==='study'}">Study</div>
+      <div class="round-action col-xs-4" ng-click="simon('practice')" ng-class="{active: bee.mode==='practice'}">Practice</div>
+      <div class="round-action col-xs-4" ng-click="simon('test')" ng-class="{active: bee.mode ==='test'}">Test</div>
+    </div>
+    <div ng-repeat="word in words" style="width:100%;padding:1em;">
+      <div ng-include src="'study.html.erb'"></div>
+      <div ng-include src="'templates/practice.html.erb'"></div>
+      <div ng-include src="'test.html.erb'"></div>
+    </div>
+    <div style="text-align:right;padding-right:2em;margin-top:1em;padding-bottom:2em;">
+      <i ng-click="up()" class="fa fa-arrow-up fa-2x" style="cursor:pointer;background-color:#fdaf17;color:white;padding:.25em;border-radius:3px;"></i>
+    </div>
+
+    </div>
+  </div>
+  <div style="position:fixed;bottom:0;left:0;background-color:#222;color:#fff;width:100%;text-align:center;font-size:.85em;padding:1em 0;">Copyright &copy; 2016 Sasha Productions</div>
+</div>

@@ -1,0 +1,10 @@
+<div class="rounds">
+  <ul unselectable="on" onselectstart="return false" onmousedown="return false" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
+    <li ng-repeat="l in bee.roundLabels" ng-click="loadRound($index);" ng-class="{active: bee.round===$index, success: congrats[$index]===true}">{{l}}</li>
+  </ul>
+</div>
+
+<div class="level-info" unselectable="on" onselectstart="return false" onmousedown="return false" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;background-color:#222;color:white;height:3em;margin-top:1em;font-size:1.25em;line-height:1em;">
+  <div style="float:left;padding-left:2em;">Round: <b style="font-size:1.25em;color:#fdaf17">{{bee.level}}</b></div>
+  <div style="float:right;padding-right:2em;">Words: <b style="font-size:1.25em;color:#fdaf17">{{words.length}}</b></div>
+</div>

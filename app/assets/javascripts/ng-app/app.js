@@ -67,17 +67,33 @@ angular.module('bee', [
 
     w.bind('resize', function() { $scope.$apply(); });
 
-    $scope.simon = function(x, idx) {
-      $scope.bee.mode = x;
+    function randomWords(arr, count) {
+        var shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+        while (i-- > min) {
+            index = Math.floor((i + 1) * Math.random());
+            temp = shuffled[index];
+            shuffled[index] = shuffled[i];
+            shuffled[i] = temp;
+        }
+        return shuffled.slice(min);
+    };
+
+    $scope.simon = function(mode, idx) {
+      $scope.bee.mode = mode;
       $scope.bee.wordIdx = idx || 0;
-      if(x==='test') {
+      if(mode === 'practice') {
+        $scope.words = $scope.bee.rounds[$scope.bee.round];
         $scope.values[idx] = '';
         focus('spelling'+ $scope.bee.wordIdx);
         setTimeout(function(){
           angular.element(document.getElementById('audio-player'+ $scope.bee.wordIdx).play());
         }, 1000);
-      }else {
+      } else if (mode === 'study'){
+        $scope.words = $scope.bee.rounds[$scope.bee.round];
+        $scope.bee.practicing = idx;
         xscroll('xword'+idx);
+      } else if (mode === 'test'){
+        $scope.testWords = randomWords($scope.words, 10);
       }
     }
 
@@ -114,7 +130,7 @@ angular.module('bee', [
       wordAudio('mirthful', 'M04/M0474900.mp3', 'adjective', "joyous; gay; jolly: a mirthful laugh."),
       wordAudio('beret', 'B02/B0259300.mp3', 'noun', "a soft, visorless cap with a close-fitting headband and a wide, round top often with a tab at its center."),
       wordAudio('evaporation', 'E03/E0359500.mp3', 'noun', "the act or process of evaporating."),
-      wordAudio('vigorously', 'V01/V0127500.mp3', 'adjective', "full of or characterized by vigor: a vigorous effort."),
+      wordAudio('vigorous', 'V01/V0127500.mp3', 'adjective', "full of or characterized by vigor: a vigorous effort."),
       wordAudio('boycott', 'B05/B0558000.mp3', 'verb (used with object)', "to combine in abstaining from, or preventing dealings with, as a means of intimidation or coercion: to boycott a store."),
       wordAudio('impulse', 'I00/I0089500.mp3', 'noun', "the influence of a particular feeling, mental state, etc.: to act under a generous impulse; to strike out at someone from an angry impulse."),
       wordAudio('winsome', 'W01/W0194200.mp3', 'adjective', "sweetly or innocently charming; winning; engaging: a winsome smile."),
@@ -192,11 +208,10 @@ angular.module('bee', [
     var round5 = [
       wordAudio('fulfill', 'F04/F0407400.mp3', 'verb (used with object)', "making someone satisfied or happy because of fully developing their character or abilities: a fulfilling and rewarding career"),
       wordAudio('hammock', 'H00/H0054400.mp3', 'noun', 'a hanging bed or couch made of canvas, netted cord, or the like, with cords attached to supports at each end.'),
-      wordAudio('blossom', 'B04/B0426500.mp3', 'noun', 'the flower of a plant, especially of one producing an edible fruit.'),
       wordAudio('magma', 'M00/M0040300.mp3', 'noun', "Geology. molten material beneath or within the earth's crust, from which igneous rock is formed."),
       wordAudio('everglades', 'E03/E0364100.mp3', 'noun', 'a swampy and partly forested region in S Florida, mostly S of Lake Okeechobee. Over 5000 sq. mi. (12,950 sq. km).'),
       wordAudio('snippet', 'S06/S0663800.mp3', 'noun', 'a small piece snipped off; a small bit, scrap, or fragment: an anthology of snippets.'),
-      wordAudio('grumbling', 'G03/G0372300.mp3', 'verb (used without object)', 'to murmur or mutter in discontent; complain sullenly.'),
+      wordAudio('grumble', 'G03/G0372300.mp3', 'verb (used without object)', 'to murmur or mutter in discontent; complain sullenly.'),
       wordAudio('granola', 'G03/G0303400.mp3', 'noun', 'a breakfast food consisting of rolled oats, brown sugar, nuts, dried fruit, etc., usually served with milk.'),
       wordAudio('umpire', 'U00/U0023200.mp3', 'noun', 'a person selected to rule on the plays in a game.'),
       wordAudio('americana', 'A03/A0386300.mp3', 'noun', '(often used with a plural verb) books, papers, maps, etc., relating to America, especially to its history, culture, and geography.'),
@@ -344,23 +359,42 @@ angular.module('bee', [
       wordAudio('territory', 'T01/T0166900.mp3', 'noun', "any tract of land; region or district."),
       wordAudio('nationalism', 'N00/N0037800.mp3', 'noun', "spirit or aspirations common to the whole of a nation."),
       wordAudio('latency', 'L00/L0099800.mp3', 'noun', "the state of being latent."),
-      wordAudio('gemini', 'G00/G0091100.mp3', 'plural noun', "Astronomy. the Twins, a zodiacal constellation between Taurus and Cancer containing the bright stars Castor and Pollux."),
-      wordAudio('alfresco', 'A02/A0298700.mp3', 'adverb', "out-of-doors; in the open air: to dine alfresco."),
-      wordAudio('sustainable', 'NEW2014/4417583.mp3', 'adjective', "capable of being supported or upheld, as by having its weight borne from below."),
-      wordAudio('tarmac', 'T00/T0067900.mp3', 'noun', "a brand of bituminous binder, similar to tarmacadam, for surfacing roads, airport runways, parking areas, etc."),
-      wordAudio('approximate', 'A06/A0619000.mp3', 'adjective', "near or approaching a certain state, condition, goal, or standard."),
-      wordAudio('hypnotic', 'H05/H0505900.mp3', 'adjective', "of or relating to hypnosis or hypnotism."),
-      wordAudio('tranquil', 'T04/T0431700.mp3', 'adjective', "free from commotion or tumult; peaceful; quiet; calm: a tranquil country place."),
+    ];
+    var round11 = [
       wordAudio('synthetic', 'S12/S1227000.mp3', 'adjective', "of, pertaining to, proceeding by, or involving synthesis (opposed to analytic)."),
+    ];
+    var round12 = [
+      wordAudio('tranquil', 'T04/T0431700.mp3', 'adjective', "free from commotion or tumult; peaceful; quiet; calm: a tranquil country place."),
+    ];
+    var round13 = [
+      wordAudio('hypnotic', 'H05/H0505900.mp3', 'adjective', "of or relating to hypnosis or hypnotism."),
+    ];
+    var round14 = [
+      wordAudio('approximate', 'A06/A0619000.mp3', 'adjective', "near or approaching a certain state, condition, goal, or standard."),
+    ];
+    var round15 = [
+      wordAudio('sustainable', 'NEW2014/4417583.mp3', 'adjective', "capable of being supported or upheld, as by having its weight borne from below."),
+    ];
+    var round16 = [
+      wordAudio('tarmac', 'T00/T0067900.mp3', 'noun', "a brand of bituminous binder, similar to tarmacadam, for surfacing roads, airport runways, parking areas, etc."),
+    ];
+    var round17 = [
+      wordAudio('alfresco', 'A02/A0298700.mp3', 'adverb', "out-of-doors; in the open air: to dine alfresco."),
+    ];
+    var round18 = [
+      wordAudio('gemini', 'G00/G0091100.mp3', 'plural noun', "Astronomy. the Twins, a zodiacal constellation between Taurus and Cancer containing the bright stars Castor and Pollux."),
     ];
 
     $scope.bee = {
       mode: 'study',
-      roundLabels: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
-      rounds: [round1, round2, round3, round4, round5, round6, round7, round8, round9, round10],
+      practicing: undefined,
+      roundLabels: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R'],
+      rounds: [round1, round2, round3, round4, round5, round6, round7, round8, round9, round10, round11, round12, round13,
+          round14, round15, round16, round17, round18],
       round: 0,
       wordIdx: 0,
-      level: 'A'
+      level: 'A',
+      colors: ['#0a0a0a', '#141414','#1f1f1f','#292929','#333333','#3d3d3d','#474747','#525252','#5c5c5c','#666666','#707070','#7a7a7a']
     };
 
     $scope.words = $scope.bee.rounds[0];
@@ -399,17 +433,35 @@ angular.module('bee', [
       }
     };
 
+    $scope.testWord = function(idx) {
+      var testIdx = idx + 1;
+      if(testIdx < $scope.testWords.length) {
+        focus('spelling' + testIdx);
+        $scope.play(testIdx);
+      }
+    };
+
+    $scope.score = function() {
+      var values = []
+      for(var i=0;i<$scope.testWords.length;i++) {
+        values.push(document.getElementById('spelling'+i).value);
+      }
+      console.log(values);
+      console.log($scope.testWords.map(function(x){return x.text;}));
+    }
+
     $scope.up = function() {
       focus('take-test');
       $window.scrollTo(0, 0);
     };
 
-    $scope.loadLevel = function(l) {
-      $scope.words = $scope.bee.rounds[l];
+    $scope.loadRound = function(idx) {
+      $scope.words = $scope.bee.rounds[idx];
       $scope.checks = new Array($scope.words.length);
+      $scope.values = new Array($scope.words.length);
       $scope.bee.mode='study';
-      $scope.bee.round = l;
-      $scope.bee.level = $scope.bee.roundLabels[l];
+      $scope.bee.round = idx;
+      $scope.bee.level = $scope.bee.roundLabels[idx];
     };
 
     $scope.play = function(idx) {

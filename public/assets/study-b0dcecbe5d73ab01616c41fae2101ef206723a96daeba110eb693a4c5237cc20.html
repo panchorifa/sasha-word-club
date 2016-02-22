@@ -1,0 +1,24 @@
+<div id="xword{{$index}}" ng-if="bee.mode==='study'" class="word-panel study" style="position:relative">
+  <!-- <div style="z-index:100;position:absolute;right:2px;top:2px;">
+    <a ng-click="simon('test', $index)">
+      <i class="fa fa-square fa-2x" style="color:#888"></i>
+    </a>
+  </div> -->
+  <div class="row">
+    <div class="col-xs-2 col-sm-1 study-word" style="text-align:right;">
+      <audio id="audio-player{{$index}}" controls style="display:none;">
+        <source src="{{word.audio}}" type="audio/mpeg">
+      </audio>
+      <a ng-click="simon('practice', $index)">
+        <i class="fa fa-play fa-2x" style="color:#fdaf17;cursor:pointer;"></i>
+      </a>
+    </div>
+    <div class="col-xs-10 col-sm-11" style="margin:0;padding:0;">
+      <div><label style="color:white;font-size:2em;line-height:.9em;letter-spacing:2px;">{{word.text}}</label></div>
+    </div>
+  </div>
+  <div class="row" style="color:#fff;padding:0 1em;">
+    <div style="padding:1em 0;">{{word.pg}}</div>
+    <div>{{word.definition}}</div>
+  </div>
+</div>

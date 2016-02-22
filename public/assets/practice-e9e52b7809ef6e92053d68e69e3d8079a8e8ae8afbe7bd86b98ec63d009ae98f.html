@@ -1,0 +1,26 @@
+<div class="row word-panel" ng-class="{wrong:checks[$index]==false, right:checks[$index]}" style="height:4em;position:relative;">
+  <!-- <div ng-if="checks[$index]==false" style="position:absolute;left:0;top:0px;">
+    <a ng-click="simon('study', $index)">
+      <i class="fa fa-question-circle fa-2x" style="color:#fff"></i>
+    </a>
+  </div> -->
+
+  <div class="col-xs-2 col-sm-1" style="text-align:right;">
+    <audio id="audio-player{{$index}}" controls style="display:none;">
+      <source src="{{word.audio}}" type="audio/mpeg">
+    </audio>
+    <a ng-click="play($index)" >
+      <i class="fa fa-play fa-2x"></i>
+    </a>
+  </div>
+  <div class="col-xs-8 col-sm-10" style="xborder:1px solid red;margin:0;padding:0;">
+    <input id="spelling{{$index}}" ng-init="spelling=values[$index]" ng-model="spelling" ng-change="updated($index)" autocomplete="off" autocorrect="off" autocapitalize="off" lowered style="padding-left:.2em;width:100%;font-size:1.2em;border-radius:2px;border:1px solid white;" my-enter="checkWord(word.text, spelling, $index)"></input>
+  </div>
+  <div class="col-xs-2 col-sm-1">
+    <a style="text-align:left;xborder:1px solid white;">
+      <i ng-click="checkWord(word.text, spelling, $index)" ng-if="checks[$index] == undefined" class="fa fa-circle fa-2x" ng-cloak></i>
+      <i ng-if="checks[$index]" class="fa fa-check fa-2x" ng-cloak></i>
+      <i ng-if="checks[$index] == false" class="fa fa-question-circle fa-2x" style="cursor:pointer;" ng-click="simon('study', $index)" ng-cloak></i>
+    </a>
+  </div>
+</div>

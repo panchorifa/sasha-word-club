@@ -4,6 +4,8 @@
 // // @import "globals";
 // // @import "dashboard";
 @import "home";
+@import "rounds";
+@import "up";
 
 .xcontainer {
   max-width:960px;
@@ -32,32 +34,6 @@ i {
   }
 }
 
-.rounds {
-  padding-top:.75em;
-  width:100%;
-  text-align: center;
-  ul {
-    list-style: none;
-    margin:0;
-    padding:0;
-    li {
-      cursor:pointer;
-      display: inline-block;
-      background-color:#222;
-      color:#fff;
-      padding:.5em;
-      width:2em;
-      margin:.15em;
-      border-radius: 3px;
-      &.active {
-        background-color: #fdaf17;
-      }
-      &.success {
-        background-color: #10b12a;
-      }
-    }
-  }
-}
 
 .fa-play {
   cursor:pointer;
@@ -67,9 +43,21 @@ i {
   text-align:center;
   padding-top:1em;
 }
-.level-action {
+.round-actions {
   text-align:center;
   padding:.4em 0 .5em 0;
+  padding:0 2.4em;
+  .round-action {
+    border:2px solid #fff;
+    cursor:pointer;
+    background-color:#222;
+    color:#fff;
+    padding:.5em 0;
+    border-radius:3px;
+    &.active {
+      background-color:#fdaf17;
+    }
+  }
 }
 
 @media only screen
@@ -101,6 +89,7 @@ and (min-device-width : 960px) {
       background-color: #fff;
     }
     .rounds {
+      padding: .5em 1em;
       ul {
         li {
           margin:1em;
@@ -110,6 +99,10 @@ and (min-device-width : 960px) {
     }
     .study-word {
       margin-left:-1em;
+    }
+
+    .round-actions {
+        padding:0 1.5em;
     }
 
   }
