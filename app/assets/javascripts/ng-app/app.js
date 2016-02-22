@@ -394,6 +394,7 @@ angular.module('bee', [
       round: 0,
       wordIdx: 0,
       level: 'A',
+      scored: false,
       colors: ['#0a0a0a', '#141414','#1f1f1f','#292929','#333333','#3d3d3d','#474747','#525252','#5c5c5c','#666666','#707070','#7a7a7a']
     };
 
@@ -404,6 +405,18 @@ angular.module('bee', [
 
     $scope.xcongrats = function() {
       return $scope.congrats[$scope.bee.round]===true;
+    };
+
+    $scope.xcolor = function(idx) {
+      if ($scope.bee.scored) {
+        if($scope.testWords.map(function(x){return x.text;})[idx] === document.getElementById('spelling'+idx).value) {
+          return '#10b12a';
+        } else {
+          return '#df2602';
+        }
+      } else {
+        return $scope.bee.colors[idx];
+      }
     };
 
     $scope.checkWord = function(text, value, idx) {
@@ -446,9 +459,16 @@ angular.module('bee', [
       for(var i=0;i<$scope.testWords.length;i++) {
         values.push(document.getElementById('spelling'+i).value);
       }
-      console.log(values);
-      console.log($scope.testWords.map(function(x){return x.text;}));
-    }
+
+      var expected = $scope.testWords.map(function(x){return x.text;});
+      var errors = 0;
+      for(var i=0;i<expected.length;i++) {
+        if(values[i] !== expected[i]) {
+          errors += 1;
+        }
+      }
+      $scope.bee.score = 10 * (10 - errors);
+    };
 
     $scope.up = function() {
       focus('take-test');
