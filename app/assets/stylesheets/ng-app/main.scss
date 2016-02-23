@@ -7,6 +7,13 @@
 @import "rounds";
 @import "up";
 
+.welcome {
+  background-color: #fdaf17;
+  &:hover {
+    background-color: #222;
+  }
+}
+
 .xcontainer {
   max-width:960px;
   margin: 0 auto;
@@ -90,9 +97,11 @@ and (min-device-width : 960px) {
     }
     .rounds {
       padding: .5em 1em;
+      height:2.75em;
       ul {
+        text-align: center;
         li {
-          margin:1em;
+          margin:.25em;
           border-radius: 3px;
         }
       }
