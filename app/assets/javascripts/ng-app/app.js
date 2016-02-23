@@ -38,8 +38,8 @@ angular.module('bee', [
     w.bind('resize', function() { $scope.$apply(); });
   }
 ])
-.controller('WordsCtrl', ['$scope', '$sce', 'focus', '$window', '$timeout', 'xscroll',
-  function ($scope, $sce, focus, $window, $timeout, xscroll) {
+.controller('WordsCtrl', ['$scope', '$sce', 'focus', '$window', '$timeout', 'xscroll', '$state',
+  function ($scope, $sce, focus, $window, $timeout, xscroll, $state) {
     var AUDIO_URL = 'http://static.sfdict.com/staticrep/dictaudio/';
     var wordAudio = function(word, audio, pg, definition) {
       return {
@@ -94,6 +94,10 @@ angular.module('bee', [
         xscroll('xword'+idx);
       } else if (mode === 'test'){
         $scope.testWords = randomWords($scope.words, 10);
+        focus('spelling0');
+        setTimeout(function(){
+          angular.element(document.getElementById('audio-player0').play());
+        }, 1000);
       }
     }
 
@@ -428,6 +432,7 @@ angular.module('bee', [
       if(expected === actual) {
         $scope.allwords = $scope.words.map(function(x){return x.text;}).join(', ');
         $scope.congrats[$scope.bee.round] = true;
+        $scope.bee.mode = 'congrats';
         angular.element(document.getElementById('fanfarrias').play());
       } else {
         if(x === 1) {
@@ -471,8 +476,9 @@ angular.module('bee', [
     };
 
     $scope.up = function() {
-      focus('take-test');
-      $window.scrollTo(0, 0);
+      // focus('take-test');
+      // $window.scrollTo(0, 0);
+      $state.reload();
     };
 
     $scope.loadRound = function(idx) {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sasha Bee</title>
+  <title>Sasha Word Club</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -20,12 +20,12 @@
 <body ng-app="bee">
 
   <div style="background-color:#222;position:fixed;top:0;width:100%;height:3.5em;">
-    <h2 style="font-weight:bold;text-align:center;padding:.35em 0;color:#fff;">SASHA <span style="color:#fdaf17">WORD</span> CLUB</h2>
+    <a href="/" style="text-decoration:none;cursor:pointer;"><h2 style="font-weight:bold;text-align:center;padding:.35em 0;color:#fff;">SASHA <span style="color:#fdaf17">WORD</span> CLUB</h2></a>
   </div>
 
-<div class="xcontainer">
-<%= yield %>
-</div>
+  <div class="xcontainer">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
