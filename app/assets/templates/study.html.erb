@@ -1,10 +1,10 @@
 <div style="text-align:left;padding:2em 0 1em 2em;">
   <div>Study spelling/definition of the following words:</div>
 </div>
-<div ng-repeat="word in words" style="width:100%;padding:1em;">
+<div ng-repeat="word in words" style="width:100%;padding:1em;-webkit-overflow-scrolling: touch;">
 
 
-<div id="xword{{$index}}" ng-if="bee.mode==='study'" class="word-panel study" style="position:relative">
+<div id="xword{{$index}}" ng-if="bee.mode==='study'" class="word-panel study" style="position:relative;-webkit-overflow-scrolling: touch;">
   <div class="row">
     <div class="col-xs-2 col-sm-1 study-word" style="text-align:right;">
       <audio id="audio-player{{$index}}" controls style="display:none;">
