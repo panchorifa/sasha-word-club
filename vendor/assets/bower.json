@@ -5,6 +5,8 @@
     "angular-sanitize": "latest",
     "angular-ui-router": "latest",
     "angular-animate": "latest",
-    "bootstrap-sass-official": "latest"
+    "angular-touch": "latest",
+    "bootstrap-sass-official": "latest",
+    "fastclick": "latest"
   }
 }

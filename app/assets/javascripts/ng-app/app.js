@@ -1,9 +1,13 @@
 angular.module('bee', [
     'ngAnimate',
     'ngSanitize',
+    'ngTouch',
 		'ui.router',
 		'templates'
 ])
+.run(function() {
+  FastClick.attach(document.body);
+})
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
   function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider

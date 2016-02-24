@@ -14,8 +14,10 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-animate
+//= require angular-touch
 //= require angular-ui-router
 //= require angular-sanitize
 //= require angular-rails-templates
+//= require fastclick
 //= require_tree .
 //= require_tree ../templates
