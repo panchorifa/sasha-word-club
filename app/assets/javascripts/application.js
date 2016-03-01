@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-animate
+//= require angular-cookies
 //= require angular-touch
 //= require angular-ui-router
 //= require angular-sanitize
