@@ -100,6 +100,7 @@ angular.module('bee', [
         templateUrl: 'words.html',
         controller: 'WordsCtrl',
         resolve: { words: ['wordService', function(wordService) {
+          console.log('========================================1');
           console.log(wordService);
           return wordService.getWordsAsync();
         }]}
@@ -128,6 +129,7 @@ angular.module('bee', [
 .controller('WordsCtrl', ['$scope', '$sce', 'focus', '$window',
   '$timeout', 'xscroll', '$state', 'words',
   function ($scope, $sce, focus, $window, $timeout, xscroll, $state, words) {
+    console.log('========================================2');
     console.log(words);
     var AUDIO_URL = 'http://static.sfdict.com/staticrep/dictaudio/';
 
