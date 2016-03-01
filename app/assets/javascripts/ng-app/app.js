@@ -100,6 +100,7 @@ angular.module('bee', [
         templateUrl: 'words.html',
         controller: 'WordsCtrl',
         resolve: { words: ['wordService', function(wordService) {
+          console.log(wordService);
           return wordService.getWordsAsync();
         }]}
     });
@@ -124,8 +125,10 @@ angular.module('bee', [
     w.bind('resize', function() { $scope.$apply(); });
   }
 ])
-.controller('WordsCtrl', ['$scope', '$sce', 'focus', '$window', '$timeout', 'xscroll', '$state', 'words',
+.controller('WordsCtrl', ['$scope', '$sce', 'focus', '$window',
+  '$timeout', 'xscroll', '$state', 'words',
   function ($scope, $sce, focus, $window, $timeout, xscroll, $state, words) {
+    console.log(words);
     var AUDIO_URL = 'http://static.sfdict.com/staticrep/dictaudio/';
 
     $scope.audio = function(audio_path) {
@@ -287,7 +290,6 @@ angular.module('bee', [
     };
 
     $scope.play = function(idx) {
-      console.log(idx);
       angular.element(document.getElementById('audio-player'+idx).play());
     }
   }

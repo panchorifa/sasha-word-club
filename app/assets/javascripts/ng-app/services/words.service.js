@@ -12,6 +12,7 @@ angular.module('bee.services', [])
     this.getWordsAsync = function() {
       var defer = $q.defer();
       this.getWords(function(data){
+        console.log(data);
         var all = data.data.words;
         var rounds = [];
         var limit = 25;
