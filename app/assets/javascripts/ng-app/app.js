@@ -127,13 +127,9 @@ angular.module('bee', [
 .controller('WordsCtrl', ['$scope', '$sce', 'focus', '$window', '$timeout', 'xscroll', '$state', 'words',
   function ($scope, $sce, focus, $window, $timeout, xscroll, $state, words) {
     var AUDIO_URL = 'http://static.sfdict.com/staticrep/dictaudio/';
-    var wordAudio = function(word, audio, pg, definition) {
-      return {
-        text: word,
-        audio: $sce.trustAsResourceUrl(AUDIO_URL+audio),
-        pg: pg,
-        definition: definition
-      };
+
+    $scope.audio = function(audio_path) {
+      return $sce.trustAsResourceUrl(AUDIO_URL+audio_path);
     };
 
     $scope.updated = function(idx) {
@@ -210,7 +206,7 @@ angular.module('bee', [
 
     $scope.xcolor = function(idx) {
       if ($scope.bee.scored) {
-        if($scope.testWords.map(function(x){return x.text;})[idx] === document.getElementById('spelling'+idx).value) {
+        if($scope.testWords.map(function(x){return x.word;})[idx] === document.getElementById('spelling'+idx).value) {
           return '#10b12a';
         } else {
           return '#df2602';
@@ -262,7 +258,7 @@ angular.module('bee', [
         values.push(document.getElementById('spelling'+i).value);
       }
 
-      var expected = $scope.testWords.map(function(x){return x.text;});
+      var expected = $scope.testWords.map(function(x){return x.word;});
       var errors = 0;
       for(var i=0;i<expected.length;i++) {
         if(values[i] !== expected[i]) {
@@ -291,6 +287,7 @@ angular.module('bee', [
     };
 
     $scope.play = function(idx) {
+      console.log(idx);
       angular.element(document.getElementById('audio-player'+idx).play());
     }
   }
