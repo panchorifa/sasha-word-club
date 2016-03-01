@@ -1,11 +1,11 @@
-<div class="rounds">
+<div class="rounds" style="border:none;height:4.5em;">
   <ul unselectable="on" onselectstart="return false" onmousedown="return false" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
-    <li ng-repeat="l in bee.roundLabels" ng-click="loadRound($index);" ng-class="{active: bee.round===$index, success: congrats[$index]===true}">{{l}}</li>
+    <li ng-repeat="l in bee.roundLabels" ng-click="loadRound($index);" ng-class="{active: bee.round===$index, success: congrats[$index]===true}">{{ l }}</li>
   </ul>
 </div>
 
-<div class="level-info" unselectable="on" onselectstart="return false" onmousedown="return false" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;background-color:#222;color:white;height:3em;margin-top:0;font-size:1.25em;line-height:1em;">
-  <div class="xround" style="float:left;padding-left:2em;">
+<div class="level-info" unselectable="on" onselectstart="return false" onmousedown="return false" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;background-color:#222;color:white;height:3em;margin-top:0;font-size:1.25em;line-height:1em;border-bottom:4px solid #fdaf17;">
+  <div class="xround" style="float:left;padding-left:1.5em;width:6.5em;xborder:1px solid red;text-align:left;">
     Round: <b style="font-size:1.25em;color:#fdaf17">{{bee.level}}</b>
   </div>
   <div class='words' style="float:left;padding-left:1em;">
