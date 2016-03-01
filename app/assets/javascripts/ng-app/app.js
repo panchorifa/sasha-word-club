@@ -223,7 +223,7 @@ angular.module('bee', [
       var expected = $scope.checks.length;
       var actual = $scope.checks.filter(function(x){return x===1}).length;
       if(expected === actual) {
-        $scope.allwords = $scope.words.map(function(x){return x.text;}).join(', ');
+        $scope.allwords = $scope.words.map(function(x){return x.word;}).join(', ');
         $scope.congrats[$scope.bee.round] = true;
         $scope.bee.mode = 'congrats';
         angular.element(document.getElementById('success').play());
