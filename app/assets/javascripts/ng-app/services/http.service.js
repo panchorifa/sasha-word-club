@@ -17,9 +17,6 @@ angular.module('bee.http', ['bee.storage', 'bee.log'])
 
     var xreq = function(xmethod, xurl, xdata, okFn, errorFn) {
       var xheaders = headers('');
-      xlog.log('xxxx--------------------------------->');
-      xlog.log(xurl);
-      xlog.log('xxxx--------------------------------->');
       $http({
         method: xmethod,
         url: xurl,
@@ -27,7 +24,6 @@ angular.module('bee.http', ['bee.storage', 'bee.log'])
         data: xdata
       }).then(
         function successCallback(data) {
-          console.log(data);
           okFn(data);
         },
         function errorCallback(err) {

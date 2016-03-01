@@ -24,11 +24,6 @@ angular.module('bee', [
 
     var xreq = function(xmethod, xurl, xdata, okFn, errorFn) {
       var xheaders = headers('');
-      console.log('eee--------------------------------->');
-      console.log(xurl);
-      console.log(xmethod);
-      console.log(xdata);
-      console.log('eee--------------------------------->');
       $http({
         method: xmethod,
         url: xurl,
@@ -131,8 +126,6 @@ angular.module('bee', [
 ])
 .controller('WordsCtrl', ['$scope', '$sce', 'focus', '$window', '$timeout', 'xscroll', '$state', 'words',
   function ($scope, $sce, focus, $window, $timeout, xscroll, $state, words) {
-    console.log(words);
-
     var AUDIO_URL = 'http://static.sfdict.com/staticrep/dictaudio/';
     var wordAudio = function(word, audio, pg, definition) {
       return {
