@@ -138,7 +138,7 @@ angular.module('bee', [
     };
 
     $scope.checkWord = function(text, value, idx) {
-      var x = text === value? 1 : 0;
+      var x = text === value ? 1 : 0;
       $scope.checks[idx] = x;
       $scope.values[idx] = value;
       xstorage.putObject('xchecks', $scope.checks);
